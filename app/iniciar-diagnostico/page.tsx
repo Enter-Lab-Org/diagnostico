@@ -46,7 +46,7 @@ const ejes = [
 
 export default function IniciarDiagnostico() {
   return <>
-    <div className="flex flex-row gap-4">
+    <div className="flex flex-row gap-4 my-5 px-24">
       <div className="flex flex-col gap-2">
         <h1>Autodiagnóstico</h1>
         <p>
@@ -57,7 +57,7 @@ export default function IniciarDiagnostico() {
         <img className="w-5xl" src="assets/mesa_de_trabajo_1.svg" alt="Autodiagnóstico" />
       </div>
     </div>
-    <div className="rounded-3xl bg-linear-to-r from-cyan-300 to-blue-950 p-6 flex flex-col gap-5 align-center justify-center">
+    <div className="rounded-3xl bg-linear-to-r from-cyan-300 to-blue-950 py-6 px-24 flex flex-col gap-5 align-center justify-center">
       <h1 className="text-white text-2xl font-bold text-center">Estos son los ejes que constituyen el cuestionario</h1>
       <div className="grid  grid-cols-5 gap-3">
         {ejes.map((ejes) => (
