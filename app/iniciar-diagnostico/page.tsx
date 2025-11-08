@@ -1,3 +1,4 @@
+import { GradientContainer } from "../components/GradientContainer";
 import { EjesCard } from "./components/EjesCard";
 
 const ejes = [
@@ -57,13 +58,13 @@ export default function IniciarDiagnostico() {
         <img className="w-5xl" src="assets/mesa_de_trabajo_1.svg" alt="Autodiagnóstico" />
       </div>
     </div>
-    <div className="rounded-3xl bg-linear-to-r from-cyan-300 to-blue-950 py-6 px-24 flex flex-col gap-5 align-center justify-center">
+    <GradientContainer>
       <h1 className="text-white text-2xl font-bold text-center">Estos son los ejes que constituyen el cuestionario</h1>
       <div className="grid  grid-cols-5 gap-3">
         {ejes.map((ejes) => (
           <EjesCard key={ejes.imageUrl} content={ejes.content} imageUrl={ejes.imageUrl} />
         ))}
       </div>
-    </div>
+    </GradientContainer>
   </>
 }
