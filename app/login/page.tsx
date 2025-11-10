@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { GradientContainer } from "../components/GradientContainer";
-import { FormLogin } from "./FormLogin";
-import SuccessLogin from "./SuccessLogin";
+import { FormLogin } from "./components/FormLogin";
+import SuccessLogin from "./components/SuccessLogin";
 
 const login = false;
 
