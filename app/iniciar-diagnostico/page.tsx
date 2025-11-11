@@ -1,4 +1,4 @@
-import { GradientContainer } from "../components/GradientContainer";
+import { GradientContainer } from "../common/components/GradientContainer";
 import { EjesCard } from "./components/EjesCard";
 
 const ejes = [

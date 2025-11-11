@@ -33,7 +33,7 @@ export default function RootLayout({
           <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white/90 backdrop-blur">
             <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4">
               <Link href="/" className="flex items-center gap-3">
-                <img src="assets/logo.svg" alt="EnterLab Diagnóstico Logo" className="h-10 w-10 shrink-0" />
+                <img src="/assets/logo.svg" alt="EnterLab Diagnóstico Logo" className="h-10 w-10 shrink-0" />
               </Link>
               <div className="flex items-center gap-4 text-sm font-medium text-neutral-600 justify-between">
                 <Routes />
