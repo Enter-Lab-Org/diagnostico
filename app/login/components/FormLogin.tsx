@@ -1,3 +1,4 @@
+import { APP_ROUTES } from "@/app/router/app.routes";
 import Link from "next/link";
 
 export const FormLogin = () => {
@@ -20,7 +21,7 @@ export const FormLogin = () => {
                     <p>
                         Aute ad irure sit esse reprehenderit commodo eiusmod officia enim laboris. Labore in amet ipsum mollit ut. Dolore dolor est magna veniam non minim enim exercitation anim anim fugiat enim culpa. In exercitation quis nisi aute laborum do. Aute cupidatat in proident incididunt consectetur Lorem elit aute velit incididunt velit.
                     </p>
-                    <Link href="/login/registro" className="text-blue-900  p-2 rounded-xl border-blue-900 border-2 w-full font-extrabold text-center">Registrate</Link>
+                    <Link href={APP_ROUTES.REGISTRO_LOGIN} className="text-blue-900  p-2 rounded-xl border-blue-900 border-2 w-full font-extrabold text-center">Registrate</Link>
                 </div>
             </div>
         </div>
