@@ -58,7 +58,22 @@
   --regular-body: Montserrat Regular;
   --bold-body: Montserrat Bold;
   --medium-body: Montserrat Medium;
+}
 
+@theme {
+  --color-primary-purple: var(--primary-purple);
+  --color-secondary-purple: var(--secondary-purple);
+  --color-primary-blue: var(--primary-blue);
+  --color-primary-green: var(--primary-green);
+  --color-primary-gray: var(--primary-gray);
+  --color-secondary-gray: var(--secondary-gray);
+  
+  --font-family-title: var(--title-purple);
+  --font-family-light: var(--light-body);
+  --font-family-light-italic: var(--light-bodyItalic);
+  --font-family-regular: var(--regular-body);
+  --font-family-bold: var(--bold-body);
+  --font-family-medium: var(--medium-body);
 }
 
 body {
