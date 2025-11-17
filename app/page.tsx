@@ -40,9 +40,10 @@ export default function IniciarDiagnostico() {
   return <>
     <div className="flex flex-row gap-4 my-5 px-24">
       <div className="flex flex-col gap-2">
-        <h1>Autodiagnóstico</h1>
-        <p>
-          Velit nostrud excepteur nulla sit. Et eiusmod adipisicing quis duis irure do fugiat quis duis tempor pariatur ullamco dolor enim. Reprehenderit ullamco tempor amet magna in pariatur ipsum elit pariatur sit dolore.
+        <h1 className="mainTitle">Autodiagnóstico</h1>
+        <p className="greyText textItalic">
+          <span className="textRegular"><strong>Bienvenido a EnterLab</strong></span> donde la tecnología de última generación y la innovación se unen para impulsar el crecimiento y la transformación de empresas, gobiernos e instituciones.<br/>
+          Descubre cómo podemos ayudarte a alcanzar tus objetivos mediante soluciones personalizadas y capacitación de vanguardia.
         </p>
       </div>
       <div className="flex flex-col gap-2">
@@ -50,8 +51,8 @@ export default function IniciarDiagnostico() {
       </div>
     </div>
     <GradientContainer>
-      <h1 className="text-white text-2xl font-bold text-center">Estos son los ejes que constituyen el cuestionario</h1>
-      <div className="grid  grid-cols-5 gap-3">
+      <h2 className="text-white text-2xl font-bold text-center boxTitle">Ejes de diagnóstico digital</h2>
+      <div className="grid  grid-cols-4 gap-3 justify-center">
         {ejes.map((ejes) => (
           <EjesCard key={ejes.imageUrl} content={ejes.content} imageUrl={ejes.imageUrl} />
         ))}
@@ -59,7 +60,7 @@ export default function IniciarDiagnostico() {
     </GradientContainer>
     <div className="flex flex-row gap-4 justify-center my-5">
       {/* TODO: Agregar context para revisar si el usuario está logueado */}
-      <Link href={APP_ROUTES.LOGIN} className="text-white  p-2 rounded-lg bg-blue-900 px-5 font-extrabold text-center">
+      <Link href={APP_ROUTES.LOGIN} className="text-white  p-2 rounded-lg px-5 font-extrabold text-center botonDiagnostico">
         Iniciar diagnóstico
       </Link>
     </div>`

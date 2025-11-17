@@ -40,7 +40,7 @@ export default function RootLayout({
               </div>
             </nav>
           </header>
-          <main className="flex-1">
+          <main className="flex-1 globalBackground">
             <div className="mx-auto w-full max-w-6xl px-4 py-6">{children}</div>
           </main>
         </div>

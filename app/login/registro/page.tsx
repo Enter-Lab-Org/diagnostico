@@ -39,7 +39,7 @@ const RegistroLoginPage = () => {
                             <button
                                 type="submit"
                                 onClick={() => setRegistroSuccess(true)}
-                                className="bg-blue-900 text-white p-2 rounded-xl border-blue-900 border-2 w-full font-extrabold mt-3"
+                                    className="buttonPurple2 subTitle text-white p-2 rounded-xl border-2 w-full font-extrabold mt-3"
                             >
                                 Crear cuenta
                             </button>

@@ -1,7 +1,134 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: ZT Floogn; /* set name */
+  src: url(../public/assets/zt_floogn_extra_bold.ttf); /* url of the font */
+}
+@font-face {
+  font-family: Montserrat Black Italic; /* set name */
+  src: url(../public/assets/montserrat_black_italic.ttf); /* url of the font */
+}
+@font-face {
+  font-family: Montserrat Bold; /* set name */
+  src: url(../public/assets/montserrat_bold.ttf); /* url of the font */
+}
+@font-face {
+  font-family: Montserrat Bold Italic; /* set name */
+  src: url(../public/assets/montserrat_bold_italic.ttf); /* url of the font */
+}
+@font-face {
+  font-family: Montserrat Extra Bold; /* set name */
+  src: url(../public/assets/montserrat_extra_bold.ttf); /* url of the font */
+}
+@font-face {
+  font-family: Montserrat Extra Bold Italic; /* set name */
+  src: url(../public/assets/montserrat_extra_bold_italic.ttf); /* url of the font */
+}
+@font-face {
+  font-family: Montserrat Medium; /* set name */
+  src: url(../public/assets/montserrat_medium.ttf); /* url of the font */
+}
+@font-face {
+  font-family: Montserrat Medium Italic; /* set name */
+  src: url(../public/assets/montserrat_medium_italic.ttf); /* url of the font */
+}
+@font-face {
+  font-family: Montserrat Light; /* set name */
+  src: url(../public/assets/montserrat-light.ttf); /* url of the font */
+}
+@font-face {
+  font-family: Montserrat Light Italic; /* set name */
+  src: url(../public/assets/montserrat-light_italic.ttf); /* url of the font */
+}
+@font-face {
+  font-family: Montserrat Regular; /* set name */
+  src: url(../public/assets/montserrat-regular.ttf); /* url of the font */
+}
+
+:root {
+  --primary-purple: #7B549E;
+  --secondary-purple: #4F4898;
+  --primary-blue: #66CCFF;
+  --primary-green: #5BE88D;
+  --primary-gray: #999999;
+  --secondary-gray: #FEFEFE;
+  --title-purple: ZT Floogn;
+  --light-body: Montserrat Light;
+  --light-bodyItalic: Montserrat Light Italic;
+  --regular-body: Montserrat Regular;
+  --bold-body: Montserrat Bold;
+  --medium-body: Montserrat Medium;
+
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+.globalBackground{
+  background-image: url(../public/assets/background.png);
+  background-size: cover;
+  background-position: 0 0;
+}
+.greyText{
+  color: var(--primary-gray);
+}
+
+.mainTitle{
+  font-family: var(--title-purple);
+  color: var(--secondary-purple);
+  font-size: 45px;
+}
+.textRegular{
+  font-family: var(--regular-body);
+}
+.textLight {
+  font-family: var(--light-body);
+}
+.textItalic{
+  font-family: var(--light-bodyItalic);
+}
+.ejesCards--Text{
+  font-family: var(--light-body);
+  color: var(--primary-purple);
+}
+.botonDiagnostico{
+  background-color: var(--secondary-purple);
+  font-family: var(--title-purple);
+  font-size: 35px;
+}
+.botonDiagnostico:hover {
+  background-color: var(--primary-purple);
+}
+.subTitle{
+  font-family: var(--title-purple);
+  font-size: 30px;
+}
+.boxTitle{
+  font-family: var(--title-purple);
+  font-size: 35px;
+}
+.textPurplePrimary{
+  color: var(--primary-purple);
+}
+.textPurple{
+  color: var(--secondary-purple);
+}
+.textGray{
+  color: var(--primary-gray);
+}
+.buttonPurple1{
+  background-color: var(--primary-purple);
+}
+.buttonPurple2{
+  background-color: var(--secondary-purple);
+}
+.cardsBackground{
+  background-color: var(--secondary-gray);
+}
+.cardsTitle{
+  font-family: var(--title-purple);
+  color: var(--primary-gray);
+  font-size: 40px;
 }
