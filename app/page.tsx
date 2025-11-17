@@ -5,32 +5,32 @@ import { APP_ROUTES } from "./router/app.routes";
 
 const ejes = [
   {
-    content: "Eje 1",
-    imageUrl: "assets/mesa_de_trabajo_3.svg"
+    content: "Cultura digital empresarial",
+    imageUrl: "assets/cultura_icon.svg"
   },
   {
-    content: "Eje 2",
-    imageUrl: "assets/mesa_de_trabajo_4.svg"
+    content: "Tecnologia e infraestructura",
+    imageUrl: "assets/tecnologia_icon.svg"
   },
   {
-    content: "Eje 3",
-    imageUrl: "assets/mesa_de_trabajo_5.svg"
+    content: "Procesos y Automatización",
+    imageUrl: "assets/procesos_icon.svg"
   },
   {
-    content: "Eje 4",
-    imageUrl: "assets/mesa_de_trabajo_6.svg"
+    content: "Datos y Analítica",
+    imageUrl: "assets/datos_icon.svg"
   },
   {
-    content: "Eje 5",
-    imageUrl: "assets/mesa_de_trabajo_7.svg"
+    content: "Experiencia del Cliente",
+    imageUrl: "assets/experiencia_icon.svg"
   },
   {
-    content: "Eje 6",
-    imageUrl: "assets/mesa_de_trabajo_8.svg"
+    content: "Gobernanza y sostenibilidad digital",
+    imageUrl: "assets/gobernanza_icon.svg"
   },
   {
-    content: "Eje 7",
-    imageUrl: "assets/mesa_de_trabajo_9.svg"
+    content: "Presencia en Internet y redes sociales",
+    imageUrl: "assets/presencia_icon.svg"
   },
 
 
