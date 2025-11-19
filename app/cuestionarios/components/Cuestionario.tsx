@@ -1,16 +1,18 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { QuestionForm } from "./Question";
 import type { QuestionData } from "../types";
+import { calculatePercentage } from "@/app/helpers";
 
 type CuestionarioProps = {
   preguntas: QuestionData[];
   onSubmit?: (data: FieldValues) => void;
+  setPorcentajeAvances: (porcentaje: number) => void;
 };
 
-export const Cuestionario = ({ preguntas, onSubmit }: CuestionarioProps) => {
+export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances }: CuestionarioProps) => {
   const [currentStep, setCurrentStep] = useState(0);
   const {
     register,
@@ -38,6 +40,10 @@ export const Cuestionario = ({ preguntas, onSubmit }: CuestionarioProps) => {
     ),
     []
   );
+
+  useEffect(() => {
+    setPorcentajeAvances(calculatePercentage(currentStep, preguntas.length));
+  }, [currentStep]);
 
   const renderNextStepButton = () => (
     <button
@@ -69,9 +75,6 @@ export const Cuestionario = ({ preguntas, onSubmit }: CuestionarioProps) => {
     />
   ));
 
-  if (!preguntas.length) {
-    return <p className="text-sm text-gray-400">No hay preguntas disponibles.</p>;
-  }
 
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)}>
