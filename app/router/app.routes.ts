@@ -5,5 +5,12 @@ export enum APP_ROUTES {
   LOGIN = "/login",
   REGISTRO_LOGIN = "/login/registro",
   REGISTRO_EMPRESAS_REGISTRADAS = "/registro/empresas-registradas",
-  CUESTIONARIO = "/cuestionario",
+  CUESTIONARIO_CULTURA_DIGITAL = "/cuestionarios/cultura_digital",
+  CUESTIONARIO_TECNOLOGIA_INFRAESTRUCTURA = "/cuestionarios/tecnologia_infraestructura",
+  CUESTIONARIO_PROCESOS_AUTOMATIZACION = "/cuestionarios/procesos_automatizacion",
+  CUESTIONARIO_DATOS_ANALITICA = "/cuestionarios/datos_analitica",
+  CUESTIONARIO_EXPERIENCIA_CLIENTE = "/cuestionarios/experiencia_cliente",
+  CUESTIONARIO_GOBERNANZA_SOSTENIBILIDAD = "/cuestionarios/gobernanza_sostenibilidad",
+  CUESTIONARIO_PRESENCIA_REDES = "/cuestionarios/presencia_redes_sociales",
+  CUESTIONARIO_CALIDAD_CIBERSEGURIDAD = "/cuestionarios/calidad_ciberseguridad",
 }

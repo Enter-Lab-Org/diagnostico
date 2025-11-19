@@ -22,7 +22,7 @@ export default function Home() {
         </div>
       ))}
     </div>
-    <Link href={APP_ROUTES.CUESTIONARIO} className="buttonPurple1 subTitle text-white py-2 px-20 rounded-xl font-extrabold text-center">
+    <Link href={APP_ROUTES.CUESTIONARIO_CULTURA_DIGITAL} className="buttonPurple1 subTitle text-white py-2 px-20 rounded-xl font-extrabold text-center">
       Iniciar diagnóstico
     </Link>
   </div>;
