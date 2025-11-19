@@ -52,12 +52,14 @@
   --primary-green: #5BE88D;
   --primary-gray: #999999;
   --secondary-gray: #FEFEFE;
+  --third-gray: #FBFBFB;
   --title-purple: ZT Floogn;
   --light-body: Montserrat Light;
   --light-bodyItalic: Montserrat Light Italic;
   --regular-body: Montserrat Regular;
   --bold-body: Montserrat Bold;
   --medium-body: Montserrat Medium;
+  --extraBold-body: Montserrat Extra Bold;
 }
 
 @theme {
@@ -146,4 +148,25 @@ body {
   font-family: var(--title-purple);
   color: var(--primary-gray);
   font-size: 40px;
+}
+.cuestionariosTitle {
+  font-family: var(--extraBold-body);
+  color: var(--primary-purple);
+  font-size: 22px;
+  text-align: center;
+}
+.cuestionariosDesc{
+  font-family: var(--light-bodyItalic);
+  color: var(--primary-gray);
+  font-size: 14px;
+}
+.cuestionariosQuestion {
+  font-family: var(--bold-body);
+  color: var(--primary-purple);
+  font-size: 18px;
+}
+.boxCuestionarios{
+  background-color: var(--third-gray);
+  border-radius: 5px;
+  box-shadow: 5px 10px 21px -8px var(--primary-gray);
 }
