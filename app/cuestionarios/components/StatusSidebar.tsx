@@ -3,7 +3,7 @@
 import { calculatePercentage } from "@/app/helpers";
 import { APP_ROUTES } from "@/app/router/app.routes";
 import { usePathname } from "next/navigation";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { usePorcentajeAvancesStore } from "../store/porcentajeAvances";
 
 interface StatusItem {
@@ -18,10 +18,20 @@ enum StatusEnum {
     NOT_STARTED = "NOT_STARTED",
 }
 
+const initialStateStatusItems: StatusItem[] = [
+    { id: "1", name: "Cultura Digital Empresarial", percentage: 0, status: StatusEnum.COMPLETED },
+    { id: "2", name: "Tecnología e infraestructura", percentage: 0, status: StatusEnum.IN_PROGRESS },
+    { id: "3", name: "Procesos y Automatización", percentage: 0, status: StatusEnum.NOT_STARTED },
+    { id: "4", name: "Datos y Analítica", percentage: 0, status: StatusEnum.NOT_STARTED },
+    { id: "5", name: "Experiencia del Cliente", percentage: 0, status: StatusEnum.NOT_STARTED },
+    { id: "6", name: "Gobernanza y sostenibilidad digital", percentage: 0, status: StatusEnum.NOT_STARTED },
+    { id: "7", name: "Presencia en Redes Sociales", percentage: 0, status: StatusEnum.NOT_STARTED },
+    { id: "8", name: "Gestión de la Calidad y Ciberseguridad", percentage: 0, status: StatusEnum.NOT_STARTED },
+];
+
 export const StatusSidebar = () => {
     const storeSeccionesCompletadas = usePorcentajeAvancesStore();
 
-    const pathname = usePathname();
     const {
         calidad_ciberseguridad,
         cultura_digital,
@@ -36,17 +46,8 @@ export const StatusSidebar = () => {
     const total = useMemo(() =>
         calculatePercentage(8, 8), []);
 
+    const [statusItems, setStatusItems] = useState<StatusItem[]>(initialStateStatusItems);
 
-    const statusItems: StatusItem[] = [
-        { id: "1", name: "Cultura Digital Empresarial", percentage: cultura_digital, status: StatusEnum.COMPLETED },
-        { id: "2", name: "Tecnología e infraestructura", percentage: tecnologia_infraestructura, status: StatusEnum.IN_PROGRESS },
-        { id: "3", name: "Procesos y Automatización", percentage: procesos_automatizacion, status: StatusEnum.NOT_STARTED },
-        { id: "4", name: "Datos y Analítica", percentage: datos_analitica, status: StatusEnum.NOT_STARTED },
-        { id: "5", name: "Experiencia del Cliente", percentage: experiencia_cliente, status: StatusEnum.NOT_STARTED },
-        { id: "6", name: "Gobernanza y sostenibilidad digital", percentage: gobernanza_sostenibilidad, status: StatusEnum.NOT_STARTED },
-        { id: "7", name: "Presencia en Redes Sociales", percentage: presencia_redes_sociales, status: StatusEnum.NOT_STARTED },
-        { id: "8", name: "Gestión de la Calidad y Ciberseguridad", percentage: calidad_ciberseguridad, status: StatusEnum.NOT_STARTED },
-    ];
 
     const getStatusStyle = (status?: StatusEnum) => {
         switch (status) {
