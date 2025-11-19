@@ -5,14 +5,17 @@ import { FieldValues, useForm } from "react-hook-form";
 import { QuestionForm } from "./Question";
 import type { QuestionData } from "../types";
 import { calculatePercentage } from "@/app/helpers";
+import { useRouter } from "next/navigation";
 
 type CuestionarioProps = {
   preguntas: QuestionData[];
   onSubmit?: (data: FieldValues) => void;
   setPorcentajeAvances: (porcentaje: number) => void;
+  nextRoute?: string;
 };
 
-export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances }: CuestionarioProps) => {
+export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances, nextRoute }: CuestionarioProps) => {
+  const { push } = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
   const {
     register,
@@ -32,13 +35,19 @@ export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances }: Cues
   const SubmitButton = useMemo(
     () => (
       <button
+        onClick={() => {
+          if (nextRoute) {
+            setPorcentajeAvances(100);
+            push(nextRoute);
+          }
+        }}
         type="submit"
         className="px-20 py-3 rounded-xl font-extrabold bg-primary-purple text-white hover:bg-secondary-purple"
       >
         Finalizar
       </button>
     ),
-    []
+    [nextRoute, setPorcentajeAvances, push]
   );
 
   useEffect(() => {
