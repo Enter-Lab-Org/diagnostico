@@ -8,7 +8,7 @@ export const QuestionForm = ({ question, answers, register, nextStepButton }: Qu
 
     return (
         <div className="flex flex-col gap-4 p-6">
-            <h2 className="text-primary-purple text-xl font-extrabold">
+            <h2 className="cuestionariosQuestion">
                 {question}
             </h2>
 
