@@ -1,7 +1,7 @@
 export const preguntas = [
   {
     question:
-      "¿La empresa cuenta con un plan de carrera digital para los trabajadores?",
+      "¿La alta dirección de la empresa se involucra activamente en la promoción y adopción de la cultura digital?",
     answers: [
       {
         label:

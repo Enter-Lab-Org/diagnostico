@@ -15,35 +15,35 @@ const cuestionariosData: Record<string, { title: string; description: string }> 
   },
   [APP_ROUTES.CUESTIONARIO_PROCESOS_AUTOMATIZACION]: {
     title: "Procesos y Automatización",
-    description: "Mide el grado de documentación, estandarización y automatización de los procesos operativos, así como la eficiencia y calidad de los mismos."
+    description: "Seleccionar herramientas escalables, seguras y acordes al tamaño de la empresa.Adoptar soluciones en la nube reduce costos y mejora la accesibilidad."
   },
   [APP_ROUTES.CUESTIONARIO_DATOS_ANALITICA]: {
     title: "Datos y Analítica",
-    description: "Examina la estrategia de gestión de datos, calidad de la información, capacidades analíticas y uso de datos para la toma de decisiones estratégicas."
+    description: "La automatización reduce errores y libera tiempo para tareas estratégicas.Herramientas accesibles: Google Workspace, Airtable, Power Automate, Trello."
   },
   [APP_ROUTES.CUESTIONARIO_EXPERIENCIA_CLIENTE]: {
     title: "Experiencia del Cliente",
-    description: "Evalúa la claridad de la propuesta de valor, consistencia omnicanal, medición de satisfacción y preparación de los equipos para gestionar la experiencia del cliente."
+    description: "Los datos son el nuevo capital empresarial.Analizarlos permite tomar decisiones basadas en evidencia."
   },
   [APP_ROUTES.CUESTIONARIO_GOBERNANZA_SOSTENIBILIDAD]: {
     title: "Gobernanza y Sostenibilidad Digital",
-    description: "Analiza los marcos de gobernanza digital, políticas de sostenibilidad, responsabilidad social y prácticas éticas en el uso de tecnologías digitales."
+    description: "El cliente digital busca rapidez, claridad y atención personalizada.Analizar la experiencia del usuario (UX) permite fidelizar y diferenciarse."
   },
   [APP_ROUTES.CUESTIONARIO_PRESENCIA_REDES]: {
     title: "Presencia en Internet y Redes Sociales",
-    description: "Mide la estrategia digital, presencia online, gestión de redes sociales y capacidad de generar engagement y valor a través de canales digitales."
+    description: "La transformación digital debe sostenerse con políticas internas, métricas claras y ética en el uso de datos."
   },
   [APP_ROUTES.CUESTIONARIO_CALIDAD_CIBERSEGURIDAD]: {
     title: "Gestión de la Calidad y Ciberseguridad",
-    description: "Evalúa el sistema de gestión de calidad, políticas de ciberseguridad, gestión de vulnerabilidades y capacidad de respuesta ante incidentes de seguridad."
+    description: "Revisa la presencia de la empresa en redes sociales, el objetivo de las mismas y la experiencia e interacciones que se tienen a través de las mismas"
   }
 };
 
 const CuestionarioLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
-  const cuestionario = cuestionariosData[pathname] || { 
-    title: "Cuestionario", 
-    description: "Selecciona una de las opciones disponibles" 
+  const cuestionario = cuestionariosData[pathname] || {
+    title: "Cuestionario",
+    description: "Selecciona una de las opciones disponibles"
   };
 
   return (
