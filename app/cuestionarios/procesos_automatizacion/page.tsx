@@ -1,7 +1,7 @@
 "use client";
 import { APP_ROUTES } from "@/app/router/app.routes";
+import { usePorcentajeAvancesStore } from "../../store/porcentajeAvances";
 import { Cuestionario } from "../components/Cuestionario";
-import { usePorcentajeAvancesStore } from "../store/porcentajeAvances";
 import { preguntas } from "./preguntas";
 
 const ProcesosAutomatizacionPage = () => {

@@ -1,13 +1,13 @@
 import { APP_ROUTES } from "../router/app.routes";
 import Link from "next/link";
 const ejesDiagnostico = [
-  { src: "/assets/cultura_icon.svg", alt: "Eje 1", label: "Cultura Digital Empresarial" },
-  { src: "/assets/tecnologia_icon.svg", alt: "Eje 2", label: "Tecnologia e infraestructura" },
-  { src: "/assets/procesos_icon.svg", alt: "Eje 1", label: "Procesos y Automatización" },
-  { src: "/assets/datos_icon.svg", alt: "Eje 1", label: "Datos y Analítica" },
-  { src: "/assets/experiencia_icon.svg", alt: "Eje 1", label: "Experiencia del Cliente" },
-  { src: "/assets/gobernanza_icon.svg", alt: "Eje 1", label: "Gobernanza y sostenibilidad digital" },
-  { src: "/assets/presencia_icon.svg", alt: "Eje 1", label: "Presencia en Internet y redes sociales" },
+  { src: "/assets/cultura_icon.svg", alt: "Eje 1", label: "Cultura Digital Empresarial", complete: true },
+  { src: "/assets/tecnologia_icon.svg", alt: "Eje 2", label: "Tecnologia e infraestructura", complete: false },
+  { src: "/assets/procesos_icon.svg", alt: "Eje 1", label: "Procesos y Automatización", complete: false },
+  { src: "/assets/datos_icon.svg", alt: "Eje 1", label: "Datos y Analítica", complete: false },
+  { src: "/assets/experiencia_icon.svg", alt: "Eje 1", label: "Experiencia del Cliente", complete: false },
+  { src: "/assets/gobernanza_icon.svg", alt: "Eje 1", label: "Gobernanza y sostenibilidad digital", complete: false },
+  { src: "/assets/presencia_icon.svg", alt: "Eje 1", label: "Presencia en Internet y redes sociales", complete: false },
 ];
 
 export default function Home() {
@@ -16,9 +16,13 @@ export default function Home() {
     <p className="textGray textRegular">Responde los cuestionarios para generar el diagnostico de tu empresa</p>
     <div className="grid grid-cols-3 gap-5">
       {ejesDiagnostico.map((eje, index) => (
-        <div key={index} className="flex flex-row gap-2 items-center justify-center">
-          <img className="w-32 shadow-lg rounded-xl" src={eje.src} alt={eje.alt} />
-          <p className="textPurplePrimary textRegular">{eje.label}</p>
+        <div key={index} className="flex flex-row gap-2 items-center justify-center ">
+          <img
+            className={`w-32 shadow-lg rounded-xl ${eje.complete && "shadow-[#4f4995]"}`}
+            src={eje.src}
+            alt={eje.alt}
+          />
+          <p className={`textPurplePrimary textRegular ${eje.complete ? "text-green-500" : "text-gray-500"}`}>{eje.label}</p>
         </div>
       ))}
     </div>

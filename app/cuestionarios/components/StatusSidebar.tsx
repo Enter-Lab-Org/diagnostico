@@ -1,9 +1,9 @@
 "use client";
 
 import { calculatePercentage } from "@/app/helpers";
-import { useMemo } from "react";
-import { usePorcentajeAvancesStore } from "../store/porcentajeAvances";
 import Link from "next/link";
+import { useMemo } from "react";
+import { usePorcentajeAvancesStore } from "../../store/porcentajeAvances";
 
 enum StatusEnum {
     COMPLETED = "COMPLETED",

@@ -21,7 +21,7 @@ type SeccionesCompletadasStore = {
 
 export const useSeccionesCompletadasStore = create<SeccionesCompletadasStore>()(
   (set) => ({
-    cultura_digital: false,
+    cultura_digital: true,
     tecnologia_infraestructura: false,
     procesos_automatizacion: false,
     datos_analitica: false,
