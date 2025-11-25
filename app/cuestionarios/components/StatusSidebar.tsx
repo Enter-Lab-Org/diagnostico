@@ -3,13 +3,8 @@
 import { calculatePercentage } from "@/app/helpers";
 import { useMemo } from "react";
 import { usePorcentajeAvancesStore } from "../store/porcentajeAvances";
+import Link from "next/link";
 
-interface StatusItem {
-    id: string;
-    name: string;
-    percentage?: number;
-    status?: StatusEnum;
-}
 enum StatusEnum {
     COMPLETED = "COMPLETED",
     IN_PROGRESS = "IN_PROGRESS",
@@ -63,12 +58,13 @@ export const StatusSidebar = () => {
         return cuestionariosConfig.map((config) => {
             const percentage = porcentajesMap[config.key];
             const status = getStatusFromPercentage(percentage);
-            
+            const href = config.key;
             return {
                 id: config.id,
                 name: config.name,
                 percentage,
-                status
+                status,
+                href
             };
         });
     }, [
@@ -121,7 +117,7 @@ export const StatusSidebar = () => {
         <div className="flex flex-col w-fit">
             <span className="text-sm text-[#7B549E] ml-4">Total: {total}%</span>
             {statusItems.map((item, index) => (
-                <div key={item.id} className="flex items-center relative">
+                <Link href={`/cuestionarios/${item.href}`} key={item.id} className="flex items-center relative">
                     {/* Vertical line connecting dots */}
                     {index < statusItems.length - 1 && (
                         <div
@@ -153,7 +149,7 @@ export const StatusSidebar = () => {
                             </span>
                         )}
                     </div>
-                </div>
+                </Link>
             ))}
         </div>
     );
