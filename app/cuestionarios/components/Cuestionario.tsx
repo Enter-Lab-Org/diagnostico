@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { FieldValues, useForm } from "react-hook-form";
-import { QuestionForm } from "./Question";
-import type { QuestionData } from "../types";
 import { calculatePercentage } from "@/app/helpers";
 import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
+import { FieldValues, useForm } from "react-hook-form";
+import type { QuestionData } from "../types";
+import { FinalCuestionario } from "./FinalCuestionario";
+import { QuestionForm } from "./Question";
 
 type CuestionarioProps = {
   preguntas: QuestionData[];
@@ -17,6 +18,7 @@ type CuestionarioProps = {
 export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances, nextRoute }: CuestionarioProps) => {
   const { push } = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
+  const [isFinished, setIsFinished] = useState(false);
   const {
     register,
     handleSubmit,
@@ -35,16 +37,35 @@ export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances, nextRo
   const SubmitButton = useMemo(
     () => (
       <button
+        onClick={async () => {
+          const isValid = await trigger(`q${currentStep + 1}`);
+          if (!isValid) {
+            return;
+          }
+          setIsFinished(true);
+        }}
+        type="button"
+        className="px-20 py-3 rounded-xl font-extrabold bg-primary-purple text-white hover:bg-secondary-purple"
+      >
+        Finalizar
+      </button>
+    ),
+    [currentStep, trigger]
+  );
+
+  const NextRouteButton = useMemo(
+    () => (
+      <button
         onClick={() => {
           if (nextRoute) {
             setPorcentajeAvances(100);
             push(nextRoute);
           }
         }}
-        type="submit"
+        type="button"
         className="px-20 py-3 rounded-xl font-extrabold bg-primary-purple text-white hover:bg-secondary-purple"
       >
-        Finalizar
+        Continuar
       </button>
     ),
     [nextRoute, setPorcentajeAvances, push]
@@ -52,7 +73,7 @@ export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances, nextRo
 
   useEffect(() => {
     setPorcentajeAvances(calculatePercentage(currentStep, preguntas.length));
-  }, [currentStep]);
+  }, [currentStep, preguntas.length, setPorcentajeAvances]);
 
   const renderNextStepButton = () => (
     <button
@@ -84,6 +105,10 @@ export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances, nextRo
     />
   ));
 
+
+  if (isFinished) {
+    return <FinalCuestionario nextStepButton={NextRouteButton} />;
+  }
 
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)}>
