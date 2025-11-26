@@ -10,7 +10,7 @@ const RegistroLoginPage = () => {
     const [formData, setFormData] = useState({
         nombreUsuario: "",
         correo: "",
-        contraseña: "",
+        password: "",
         confirmarContraseña: "",
         razonSocial: "",
         rfc: "",
@@ -64,7 +64,7 @@ const RegistroLoginPage = () => {
                                 type="password"
                                 name="contraseña"
                                 placeholder="Contraseña"
-                                value={formData.contraseña}
+                                value={formData.password}
                                 onChange={handleChange}
                                 className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
                             />
