@@ -6,6 +6,13 @@ import { useState } from 'react';
 
 const PerfilEmpresasPage = () => {
     const [isEmpresasPrueba, setIsEmpresasPrueba] = useState(false);
+    const [razonSocial, setRazonSocial] = useState('');
+    const [rfc, setRfc] = useState('');
+    const [tamanoEmpresa, setTamanoEmpresa] = useState('');
+    const [actividad, setActividad] = useState('');
+    const [pais, setPais] = useState('');
+    const [estado, setEstado] = useState('');
+    const [municipio, setMunicipio] = useState('');
 
     return (
         <div className="flex flex-col gap-5 text-gray-400">
@@ -13,25 +20,63 @@ const PerfilEmpresasPage = () => {
             <p className='textRegular textGray'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
             <p className='textRegular textGray'>Commodo veniam nisi id sint ipsum adipisicing nulla ut quis consequat. Consectetur adipisicing aliquip adipisicing ullamco. Consectetur aute voluptate veniam consequat aute. Dolore ut duis amet anim dolore ex tempor commodo dolor excepteur dolore.</p>
             <div className="grid grid-cols-3 gap-5">
-                <input  type="text" placeholder="Nombre de la empresa" className="w-full p-2 rounded-md  bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0" disabled={isEmpresasPrueba} />
-                <input type="text" placeholder="Nombre de la empresa" className="w-full p-2 rounded-md  bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0" disabled={isEmpresasPrueba} />
-                <input type="text" placeholder="Nombre de la empresa" className="w-full p-2 rounded-md  bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0" disabled={isEmpresasPrueba} />
-                <input type="text" placeholder="Nombre de la empresa" className="col-span-3 w-full p-2 rounded-md  bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0" disabled={isEmpresasPrueba} />
-                <input type="text" placeholder="Nombre de la empresa" className="w-full p-2 rounded-md  bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0" disabled={isEmpresasPrueba} />
-                <input type="text" placeholder="Nombre de la empresa" className="w-full p-2 rounded-md  bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0" disabled={isEmpresasPrueba} />
-                <input type="text" placeholder="Nombre de la empresa" className="w-full p-2 rounded-md  bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0" disabled={isEmpresasPrueba} />
-                <div className="flex items-center col-span-1">
-                    <input
-                        type="checkbox"
-                        id="empresas-prueba"
-                        className="mr-2 accent-violet-400"
-                        checked={isEmpresasPrueba}
-                        onChange={(e) => setIsEmpresasPrueba(e.target.checked)}
-                    />
-                    <label htmlFor="empresas-prueba" className="font-medium ">
-                        Empresas de prueba **
-                    </label>
-                </div>
+                <input 
+                    type="text" 
+                    placeholder="Razón social" 
+                    className="col-span-3 w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0" 
+                    disabled={isEmpresasPrueba}
+                    value={razonSocial}
+                    onChange={(e) => setRazonSocial(e.target.value)}
+                />
+                <input 
+                    type="text" 
+                    placeholder="RFC" 
+                    className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0" 
+                    disabled={isEmpresasPrueba}
+                    value={rfc}
+                    onChange={(e) => setRfc(e.target.value)}
+                />
+                <input 
+                    type="text" 
+                    placeholder="Tamaño de la empresa" 
+                    className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0" 
+                    disabled={isEmpresasPrueba}
+                    value={tamanoEmpresa}
+                    onChange={(e) => setTamanoEmpresa(e.target.value)}
+                />
+                <input 
+                    type="text" 
+                    placeholder="Actividad" 
+                    className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0" 
+                    disabled={isEmpresasPrueba}
+                    value={actividad}
+                    onChange={(e) => setActividad(e.target.value)}
+                />
+                <input 
+                    type="text" 
+                    placeholder="País" 
+                    className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0" 
+                    disabled={isEmpresasPrueba}
+                    value={pais}
+                    onChange={(e) => setPais(e.target.value)}
+                />
+                <input 
+                    type="text" 
+                    placeholder="Estado" 
+                    className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0" 
+                    disabled={isEmpresasPrueba}
+                    value={estado}
+                    onChange={(e) => setEstado(e.target.value)}
+                />
+                <input 
+                    type="text" 
+                    placeholder="Municipio" 
+                    className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0" 
+                    disabled={isEmpresasPrueba}
+                    value={municipio}
+                    onChange={(e) => setMunicipio(e.target.value)}
+                />
+               
                 <Link href={APP_ROUTES.INICIAR_DIAGNOSTICO} className="buttonPurple1 subTitle text-white p-2 text-center rounded-xl border-2 w-full font-extrabold">Continuar</Link>
             </div>
             <p className="text-sm text-gray-400">Los campos con ** son obligatorios</p>

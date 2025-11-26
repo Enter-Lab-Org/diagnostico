@@ -8,17 +8,23 @@ import SuccessLogin from "../components/SuccessLogin";
 const RegistroLoginPage = () => {
     const [registroSuccess, setRegistroSuccess] = useState(false);
     const [formData, setFormData] = useState({
-        nombreUsuario: "",
-        correo: "",
-        password: "",
-        confirmarContraseña: "",
-        razonSocial: "",
-        rfc: "",
-        tamanoEmpresa: "",
-        actividad: "",
-        pais: "",
-        estado: "",
-        municipio: ""
+        nombres: "",
+        apellidoPaterno: "",
+        apellidoMaterno: "",
+        curp: "",
+        sexo: "",
+        fechaNacimiento: "",
+        entidadFederativaNacimiento: "",
+        municipioResidencia: "",
+        entidadFederativaResidencia: "",
+        calle: "",
+        numeroExterior: "",
+        numeroInterior: "",
+        codigoPostal: "",
+        whatsapp: "",
+        correoElectronico: "",
+        perfil: "",
+        areaConocimiento: ""
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -46,89 +52,147 @@ const RegistroLoginPage = () => {
                         <form className="flex flex-col gap-4 w-80 mt-6" onSubmit={handleSubmit}>
                             <input
                                 type="text"
-                                name="nombreUsuario"
-                                placeholder="Nombre de usuario"
-                                value={formData.nombreUsuario}
+                                name="nombres"
+                                placeholder="Nombre(s)"
+                                value={formData.nombres}
                                 onChange={handleChange}
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                            />
+                            <input
+                                type="text"
+                                name="apellidoPaterno"
+                                placeholder="Apellido paterno"
+                                value={formData.apellidoPaterno}
+                                onChange={handleChange}
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                            />
+                            <input
+                                type="text"
+                                name="apellidoMaterno"
+                                placeholder="Apellido materno"
+                                value={formData.apellidoMaterno}
+                                onChange={handleChange}
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                            />
+                            <input
+                                type="text"
+                                name="curp"
+                                placeholder="CURP"
+                                value={formData.curp}
+                                onChange={handleChange}
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                            />
+                            <select
+                                name="sexo"
+                                value={formData.sexo}
+                                onChange={handleChange}
+                                className="w-full p-2 rounded-md bg-gray-300 text-gray-500 font-extrabold border-0"
+                            >
+                                <option value="">Sexo</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                                <option value="Prefiero no mencionarlo">Prefiero no mencionarlo</option>
+                            </select>
+                            <input
+                                type="date"
+                                name="fechaNacimiento"
+                                placeholder="Fecha de nacimiento"
+                                value={formData.fechaNacimiento}
+                                onChange={handleChange}
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                            />
+                            <input
+                                type="text"
+                                name="entidadFederativaNacimiento"
+                                placeholder="Entidad federativa de nacimiento"
+                                value={formData.entidadFederativaNacimiento}
+                                onChange={handleChange}
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                            />
+                            <input
+                                type="text"
+                                name="municipioResidencia"
+                                placeholder="Municipio de residencia"
+                                value={formData.municipioResidencia}
+                                onChange={handleChange}
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                            />
+                            <input
+                                type="text"
+                                name="entidadFederativaResidencia"
+                                placeholder="Entidad federativa de residencia"
+                                value={formData.entidadFederativaResidencia}
+                                onChange={handleChange}
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                            />
+                            <input
+                                type="text"
+                                name="calle"
+                                placeholder="Calle"
+                                value={formData.calle}
+                                onChange={handleChange}
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                            />
+                            <input
+                                type="text"
+                                name="numeroExterior"
+                                placeholder="No. Exterior"
+                                value={formData.numeroExterior}
+                                onChange={handleChange}
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                            />
+                            <input
+                                type="text"
+                                name="numeroInterior"
+                                placeholder="No. Interior"
+                                value={formData.numeroInterior}
+                                onChange={handleChange}
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                            />
+                            <input
+                                type="text"
+                                name="codigoPostal"
+                                placeholder="C.P."
+                                value={formData.codigoPostal}
+                                onChange={handleChange}
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                            />
+                            <input
+                                type="tel"
+                                name="whatsapp"
+                                placeholder="Whatsapp (10 dígitos)"
+                                value={formData.whatsapp}
+                                onChange={handleChange}
+                                maxLength={10}
                                 className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
                             />
                             <input
                                 type="email"
-                                name="correo"
-                                placeholder="Correo"
-                                value={formData.correo}
+                                name="correoElectronico"
+                                placeholder="Correo electrónico"
+                                value={formData.correoElectronico}
                                 onChange={handleChange}
                                 className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
                             />
-                            <input
-                                type="password"
-                                name="contraseña"
-                                placeholder="Contraseña"
-                                value={formData.password}
+                            <select
+                                name="perfil"
+                                value={formData.perfil}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
-                            />
-                            <input
-                                type="password"
-                                name="confirmarContraseña"
-                                placeholder="Confirmar contraseña"
-                                value={formData.confirmarContraseña}
-                                onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
-                            />
+                                className="w-full p-2 rounded-md bg-gray-300 text-gray-500 font-extrabold border-0"
+                            >
+                                <option value="">Perfil (Estudiante superior o universitario)</option>
+                                <option value="Consultor(a)">Consultor(a)</option>
+                                <option value="Estudiante">Estudiante</option>
+                                <option value="Emprendedor(a)">Emprendedor(a)</option>
+                                <option value="Empleado(a)">Empleado(a)</option>
+                                <option value="Dueño(a)">Dueño(a)</option>
+                                <option value="Otro">Otro</option>
+                            </select>
                             <input
                                 type="text"
-                                name="razonSocial"
-                                placeholder="Razón social"
-                                value={formData.razonSocial}
-                                onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
-                            />
-                            <input
-                                type="text"
-                                name="rfc"
-                                placeholder="RFC"
-                                value={formData.rfc}
-                                onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
-                            />
-                            <input
-                                type="text"
-                                name="tamanoEmpresa"
-                                placeholder="Tamaño de la empresa"
-                                value={formData.tamanoEmpresa}
-                                onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
-                            />
-                            <input
-                                type="text"
-                                name="actividad"
-                                placeholder="Actividad"
-                                value={formData.actividad}
-                                onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
-                            />
-                            <input
-                                type="text"
-                                name="pais"
-                                placeholder="País"
-                                value={formData.pais}
-                                onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
-                            />
-                            <input
-                                type="text"
-                                name="estado"
-                                placeholder="Estado"
-                                value={formData.estado}
-                                onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
-                            />
-                            <input
-                                type="text"
-                                name="municipio"
-                                placeholder="Municipio"
-                                value={formData.municipio}
+                                name="areaConocimiento"
+                                placeholder="Área del conocimiento"
+                                value={formData.areaConocimiento}
                                 onChange={handleChange}
                                 className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
                             />
