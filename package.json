@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@formity/react": "^1.0.0",
+    "@headlessui/react": "^2.2.9",
+    "@heroicons/react": "^2.2.0",
     "@hookform/resolvers": "^5.2.2",
     "next": "16.0.1",
     "react": "19.2.0",

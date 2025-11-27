@@ -91,6 +91,9 @@ body {
 .greyText{
   color: var(--primary-gray);
 }
+.textCenter{
+  text-align: center;
+}
 
 .mainTitle{
   font-family: var(--title-purple);
@@ -169,6 +172,11 @@ body {
 .botnCerrarCuestionario:hover{
   color: var(--third-gray);
   background-color: var(--primary-gray);
+}
+.hamburguerColor{
+  color: var(--secondary-gray);
+  border: 1px solid var(--primary-purple);
+  border-radius: 10px;
 }
 .cardsBackground{
   background-color: var(--secondary-gray);

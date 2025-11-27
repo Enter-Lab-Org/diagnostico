@@ -11,22 +11,22 @@ const ejesDiagnostico = [
 ];
 
 export default function Home() {
-  return <div className="flex flex-col gap-5 shadow-xl rounded-xl px-34 py-14 items-center justify-center cardsBackground">
+  return <div className="flex flex-col gap-5 shadow-xl rounded-xl px-6 md:px-34 py-14 items-center justify-center cardsBackground">
     <h1 className="text-2xl font-extrabold text-center text-gray-400 cardsTitle">Ejes de diagnóstico</h1>
     <p className="textGray textRegular">Responde los cuestionarios para generar el diagnostico de tu empresa</p>
-    <div className="grid grid-cols-3 gap-5">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
       {ejesDiagnostico.map((eje, index) => (
-        <div key={index} className="flex flex-row gap-2 items-center justify-center ">
+        <div key={index} className="flex flex-col md:flex-row gap-2 items-center justify-center ">
           <img
             className={`w-32 shadow-lg rounded-xl ${eje.complete && "shadow-[#4f4995]"}`}
             src={eje.src}
             alt={eje.alt}
           />
-          <p className={`textPurplePrimary textRegular ${eje.complete ? "text-green-500" : "text-gray-500"}`}>{eje.label}</p>
+          <p className={`textCenter textPurplePrimary textRegular ${eje.complete ? "text-green-500" : "text-gray-500"}`}>{eje.label}</p>
         </div>
       ))}
     </div>
-    <Link href={APP_ROUTES.CUESTIONARIO_CULTURA_DIGITAL} className="buttonPurple1 subTitle text-white py-2 px-20 rounded-xl font-extrabold text-center">
+    <Link href={APP_ROUTES.CUESTIONARIO_CULTURA_DIGITAL} className="buttonPurple1 subTitle text-white py-2 px-4 md:px-20 rounded-xl font-extrabold text-center">
       Iniciar diagnóstico
     </Link>
   </div>;

@@ -30,9 +30,9 @@ const routes = [
 const Routes = () => {
     return (
         <>
-            <div className="flex items-center gap-4 text-sm font-medium text-neutral-600"></div>
+            {/* <div className="flex items-center gap-4 text-sm font-medium text-neutral-600"></div> */}
             {routes.map((route) => (
-                <Link key={route.href} href={route.href} className="transition-colors hover:text-neutral-900">
+                <Link key={route.href} href={route.href} className="transition-colors hover:text-neutral-900 inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900">
                     {route.label}
                 </Link>
             ))}

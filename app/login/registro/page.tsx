@@ -46,22 +46,22 @@ const RegistroLoginPage = () => {
             {registroSuccess ? <Link href={APP_ROUTES.REGISTRO_EMPRESAS}>
                 <SuccessLogin message="Cuenta creada correctamente" />
             </Link> : (
-                <div className="mx-60 flex flex-col bg-blue-50 rounded-xl align-center justify-center items-center p-14">
+                <div className="md:mx-10 flex flex-col bg-blue-50 rounded-xl align-center justify-center items-center p-2 md:p-14">
                     <img className="w-32" src="/assets/logo.svg" alt="logo" />
                     <div className="flex flex-col gap-5">
-                        <form className="flex flex-col gap-4 w-80 mt-6" onSubmit={handleSubmit}>
+                        <form className="flex flex-col md:grid md:grid-cols-2 gap-4 w-80 md:w-full mt-6" onSubmit={handleSubmit}>
                             <input
                                 type="text"
                                 name="nombres"
                                 placeholder="Nombre(s)"
                                 value={formData.nombres}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
+                                className="w-full md:col-span-2 p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                             />
                             <input
                                 type="text"
                                 name="apellidoPaterno"
-                                placeholder="Apellido paterno"
+                                placeholder="Primer apellido"
                                 value={formData.apellidoPaterno}
                                 onChange={handleChange}
                                 className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
@@ -69,7 +69,7 @@ const RegistroLoginPage = () => {
                             <input
                                 type="text"
                                 name="apellidoMaterno"
-                                placeholder="Apellido materno"
+                                placeholder="Segundo apellido"
                                 value={formData.apellidoMaterno}
                                 onChange={handleChange}
                                 className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
@@ -80,7 +80,7 @@ const RegistroLoginPage = () => {
                                 placeholder="CURP"
                                 value={formData.curp}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
+                                className="w-full md:col-span-2 p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                             />
                             <select
                                 name="sexo"
@@ -194,11 +194,11 @@ const RegistroLoginPage = () => {
                                 placeholder="Área del conocimiento"
                                 value={formData.areaConocimiento}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
+                                className="w-full md:col-span-2 p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                             />
                             <button
                                 type="submit"
-                                    className="buttonPurple2 subTitle cursor-pointer text-white p-2 rounded-xl border-2 w-full mt-3"
+                                    className="md:col-span-2 buttonPurple2 subTitle cursor-pointer text-white p-2 rounded-xl border-2 w-full mt-3"
                             >
                                 Crear cuenta
                             </button>

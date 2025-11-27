@@ -4,7 +4,7 @@ import Link from "next/link";
 export const FormLogin = () => {
     return (
         <div className="flex flex-col bg-blue-50 rounded-xl">
-            <div className="grid grid-cols-2">
+            <div className="grid grid-cols-1 md:grid-cols-2">
                 {/* Formulario de login*/}
                 <div className="flex flex-col align-center justify-center items-center p-14">
                     <img className="w-32" src="assets/logo.svg" alt="logo" />
