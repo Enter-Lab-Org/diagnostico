@@ -5,7 +5,7 @@ const routes = [
         label: "Iniciar Diagnóstico",
         href: "/iniciar-diagnostico"
     },
-    {
+    /* {
         label: "¿Qué es la plataforma?",
         href: "/que-es-la-plataforma"
     },
@@ -24,7 +24,7 @@ const routes = [
     {
         label: "Glosario",
         href: "/glosario"
-    },
+    }, */
 ]
 
 const Routes = () => {
