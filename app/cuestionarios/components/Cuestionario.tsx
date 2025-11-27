@@ -63,7 +63,7 @@ export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances, nextRo
           }
         }}
         type="button"
-        className="px-20 py-3 rounded-xl font-extrabold bg-primary-purple text-white hover:bg-secondary-purple"
+        className="px-20 py-3 rounded-xl font-extrabold bg-primary-purple text-white hover:bg-secondary-purple cursor-pointer"
       >
         Continuar
       </button>
@@ -78,7 +78,7 @@ export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances, nextRo
   const renderNextStepButton = () => (
     <button
       type="button"
-      className="px-20 py-3 rounded-xl font-extrabold bg-primary-purple text-white hover:bg-secondary-purple"
+      className="px-20 py-3 rounded-xl font-extrabold bg-primary-purple text-white hover:bg-secondary-purple cursor-pointer"
       onClick={async () => {
         const isValid = await trigger(`q${currentStep + 1}`);
         if (!isValid) {

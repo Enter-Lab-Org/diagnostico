@@ -60,7 +60,7 @@ export default function IniciarDiagnostico() {
     </GradientContainer>
     <div className="flex flex-row gap-4 justify-center my-5">
       {/* TODO: Agregar context para revisar si el usuario está logueado */}
-      <Link href={APP_ROUTES.LOGIN} className="text-white  p-2 rounded-lg px-5 font-extrabold text-center botonDiagnostico">
+      <Link href={APP_ROUTES.LOGIN} className="text-white  p-2 rounded-lg px-5 font-extrabold text-center botonDiagnostico bounceButton">
         Iniciar diagnóstico
       </Link>
     </div>`

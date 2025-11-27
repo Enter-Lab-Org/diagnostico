@@ -118,6 +118,16 @@ body {
 .botonDiagnostico:hover {
   background-color: var(--primary-purple);
 }
+.botonDiagnosticoLine{
+  border: 2px solid var(--primary-purple);
+  color: var(--primary-purple);
+  border-radius: .75rem;
+  font-size: 35px;
+}
+.botonDiagnosticoLine:hover {
+  background-color: var(--primary-purple);
+  color: var(--secondary-gray);
+}
 .subTitle{
   font-family: var(--title-purple);
   font-size: 30px;
@@ -138,8 +148,27 @@ body {
 .buttonPurple1{
   background-color: var(--primary-purple);
 }
+.buttonPurple1:hover {
+  background-color: var(--secondary-purple);
+}
 .buttonPurple2{
   background-color: var(--secondary-purple);
+}
+.buttonPurple2:hover {
+  background-color: var(--primary-purple);
+}
+.botonPurpleLine{
+  border: 2px solid var(--primary-purple);
+  border-radius: .75rem;
+}
+.botonPurpleLine:hover {
+  border: 2px solid var(--secondary-purple);
+  color: var(--secondary-gray);
+  background-color: var(--secondary-purple);
+}
+.botnCerrarCuestionario:hover{
+  color: var(--third-gray);
+  background-color: var(--primary-gray);
 }
 .cardsBackground{
   background-color: var(--secondary-gray);
@@ -170,3 +199,39 @@ body {
   border-radius: 5px;
   box-shadow: 5px 10px 21px -8px var(--primary-gray);
 }
+.placeholder__montserrat{
+  font-family: var(--light-body);
+}
+
+/*bounce animation*/
+@keyframes bounce {
+	0%, 100%, 20%, 50%, 80% {
+		-webkit-transform: translateY(0);
+		-ms-transform:     translateY(0);
+		transform:         translateY(0)
+	}
+	40% {
+		-webkit-transform: translateY(-20px);
+		-ms-transform:     translateY(-20px);
+		transform:         translateY(-20px)
+	}
+	60% {
+		-webkit-transform: translateY(-10px);
+		-ms-transform:     translateY(-10px);
+		transform:         translateY(-10px)
+	}
+}
+.bounceButton {  
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+}
+.bounceButton:hover {
+  cursor: pointer;
+  animation-name: bounce;
+  -moz-animation-name: bounce;
+}
+/*bounce animation*/

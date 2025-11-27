@@ -11,7 +11,7 @@ export const FormLogin = () => {
                     <form className="flex flex-col gap-4 w-full mt-10">
                         <input type="email" placeholder="Email" className="w-full p-2 rounded-md  bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0" />
                         <input type="password" placeholder="Contraseña" className="w-full p-2 rounded-md  bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0" />
-                        <button type="submit" className="buttonPurple2 subTitle text-white p-2 rounded-xl border-2 w-full font-extrabold">Iniciar sesión</button>
+                        <button type="submit" className="buttonPurple2 subTitle cursor-pointer text-white p-2 rounded-xl border-2 w-full font-extrabold botonDiagnostico bounceButton">Iniciar sesión</button>
                         <Link href="/recuperar-contrasena" className="text-gray-500 text-sm font-extrabold text-center underline">Olvide mi contraseña</Link>
                     </form>
                 </div>
@@ -21,7 +21,7 @@ export const FormLogin = () => {
                     <p className="textRegular">
                         Aute ad irure sit esse reprehenderit commodo eiusmod officia enim laboris. Labore in amet ipsum mollit ut. Dolore dolor est magna veniam non minim enim exercitation anim anim fugiat enim culpa. In exercitation quis nisi aute laborum do. Aute cupidatat in proident incididunt consectetur Lorem elit aute velit incididunt velit.
                     </p>
-                    <Link href={APP_ROUTES.REGISTRO_LOGIN} className="subTitle textPurple text-blue-900  p-2 rounded-xl border-2 w-full font-extrabold text-center">Registrate</Link>
+                    <Link href={APP_ROUTES.REGISTRO_LOGIN} className="subTitle textPurple cursor-pointer botonDiagnosticoLine text-blue-900  p-2 w-full font-extrabold text-center bounceButton">Registrate</Link>
                 </div>
             </div>
         </div>

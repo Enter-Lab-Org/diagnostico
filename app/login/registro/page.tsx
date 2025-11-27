@@ -56,7 +56,7 @@ const RegistroLoginPage = () => {
                                 placeholder="Nombre(s)"
                                 value={formData.nombres}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                             />
                             <input
                                 type="text"
@@ -64,7 +64,7 @@ const RegistroLoginPage = () => {
                                 placeholder="Apellido paterno"
                                 value={formData.apellidoPaterno}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                             />
                             <input
                                 type="text"
@@ -72,7 +72,7 @@ const RegistroLoginPage = () => {
                                 placeholder="Apellido materno"
                                 value={formData.apellidoMaterno}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                             />
                             <input
                                 type="text"
@@ -80,13 +80,13 @@ const RegistroLoginPage = () => {
                                 placeholder="CURP"
                                 value={formData.curp}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                             />
                             <select
                                 name="sexo"
                                 value={formData.sexo}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 text-gray-500 font-extrabold border-0"
+                                    className="w-full p-2 rounded-md bg-gray-300 text-gray-500 placeholder__montserrat border-0"
                             >
                                 <option value="">Sexo</option>
                                 <option value="Masculino">Masculino</option>
@@ -99,7 +99,7 @@ const RegistroLoginPage = () => {
                                 placeholder="Fecha de nacimiento"
                                 value={formData.fechaNacimiento}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                             />
                             <input
                                 type="text"
@@ -107,7 +107,7 @@ const RegistroLoginPage = () => {
                                 placeholder="Entidad federativa de nacimiento"
                                 value={formData.entidadFederativaNacimiento}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                             />
                             <input
                                 type="text"
@@ -115,7 +115,7 @@ const RegistroLoginPage = () => {
                                 placeholder="Municipio de residencia"
                                 value={formData.municipioResidencia}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                             />
                             <input
                                 type="text"
@@ -123,7 +123,7 @@ const RegistroLoginPage = () => {
                                 placeholder="Entidad federativa de residencia"
                                 value={formData.entidadFederativaResidencia}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                             />
                             <input
                                 type="text"
@@ -131,7 +131,7 @@ const RegistroLoginPage = () => {
                                 placeholder="Calle"
                                 value={formData.calle}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                             />
                             <input
                                 type="text"
@@ -139,7 +139,7 @@ const RegistroLoginPage = () => {
                                 placeholder="No. Exterior"
                                 value={formData.numeroExterior}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                             />
                             <input
                                 type="text"
@@ -147,7 +147,7 @@ const RegistroLoginPage = () => {
                                 placeholder="No. Interior"
                                 value={formData.numeroInterior}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                             />
                             <input
                                 type="text"
@@ -155,7 +155,7 @@ const RegistroLoginPage = () => {
                                 placeholder="C.P."
                                 value={formData.codigoPostal}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                             />
                             <input
                                 type="tel"
@@ -164,7 +164,7 @@ const RegistroLoginPage = () => {
                                 value={formData.whatsapp}
                                 onChange={handleChange}
                                 maxLength={10}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                             />
                             <input
                                 type="email"
@@ -172,13 +172,13 @@ const RegistroLoginPage = () => {
                                 placeholder="Correo electrónico"
                                 value={formData.correoElectronico}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                             />
                             <select
                                 name="perfil"
                                 value={formData.perfil}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 text-gray-500 font-extrabold border-0"
+                                className="w-full p-2 rounded-md bg-gray-300 text-gray-500 placeholder__montserrat border-0"
                             >
                                 <option value="">Perfil (Estudiante superior o universitario)</option>
                                 <option value="Consultor(a)">Consultor(a)</option>
@@ -194,11 +194,11 @@ const RegistroLoginPage = () => {
                                 placeholder="Área del conocimiento"
                                 value={formData.areaConocimiento}
                                 onChange={handleChange}
-                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder:font-extrabold border-0"
+                                className="w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                             />
                             <button
                                 type="submit"
-                                className="buttonPurple2 subTitle text-white p-2 rounded-xl border-2 w-full font-extrabold mt-3"
+                                    className="buttonPurple2 subTitle cursor-pointer text-white p-2 rounded-xl border-2 w-full mt-3"
                             >
                                 Crear cuenta
                             </button>

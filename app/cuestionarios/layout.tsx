@@ -51,7 +51,7 @@ const CuestionarioLayout = ({ children }: { children: React.ReactNode }) => {
     <div className="flex flex-col rounded-xl shadow-xl w-full mx-auto p-12 gap-5 text-gray-500 bg-white">
       <div className="grid grid-cols-6 gap-4 items-center justify-center">
         <h1 className="cardsTitle col-span-4 col-start-2 text-2xl font-extrabold text-center text-gray-400">Ejes de diagnóstico</h1>
-        <Link href={APP_ROUTES.INICIAR_DIAGNOSTICO} className="text-gray-300 text-sm border-gray-300 border-2 rounded-xl text-center align-middle justify-center p-2">Cerrar cuestionario</Link>
+        <Link href={APP_ROUTES.INICIAR_DIAGNOSTICO} className="text-gray-300 text-sm border-gray-300 border-2 rounded-xl text-center align-middle justify-center p-2 botnCerrarCuestionario">Cerrar cuestionario</Link>
       </div>
       <div className="flex flex-row gap-5">
         <StatusSidebar />
