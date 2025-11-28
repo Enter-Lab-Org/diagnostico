@@ -1,11 +1,12 @@
 "use client";
 import { APP_ROUTES } from "@/app/router/app.routes";
-import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import SuccessLogin from "../components/SuccessLogin";
 
 
 const RegistroLoginPage = () => {
+    const router = useRouter();
     const [registroSuccess, setRegistroSuccess] = useState(false);
     const [formData, setFormData] = useState({
         nombres: "",
@@ -41,11 +42,21 @@ const RegistroLoginPage = () => {
         setRegistroSuccess(true);
     };
 
+    useEffect(() => {
+        if (registroSuccess) {
+            const timer = setTimeout(() => {
+                router.push(APP_ROUTES.REGISTRO_EMPRESAS);
+            }, 2000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [registroSuccess, router]);
+
     return (
         <>
-            {registroSuccess ? <Link href={APP_ROUTES.REGISTRO_EMPRESAS}>
+            {registroSuccess ? (
                 <SuccessLogin message="Cuenta creada correctamente" />
-            </Link> : (
+            ) : (
                 <div className="md:mx-10 flex flex-col bg-blue-50 rounded-xl align-center justify-center items-center p-2 md:p-14">
                     <img className="w-32" src="/assets/logo.svg" alt="logo" />
                     <div className="flex flex-col gap-5">
