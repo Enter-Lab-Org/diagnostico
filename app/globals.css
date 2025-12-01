@@ -210,6 +210,9 @@ body {
 .placeholder__montserrat{
   font-family: var(--light-body);
 }
+.borderComplete{
+  border: 3px solid var(--primary-purple);
+}
 
 /*bounce animation*/
 @keyframes bounce {

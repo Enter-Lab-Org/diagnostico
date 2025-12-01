@@ -18,7 +18,7 @@ export default function Home() {
       {ejesDiagnostico.map((eje, index) => (
         <div key={index} className="flex flex-col md:flex-row gap-2 items-center justify-center ">
           <img
-            className={`w-32 shadow-lg rounded-xl ${eje.complete && "shadow-[#4f4995]"}`}
+            className={`w-32 shadow-lg rounded-xl cursor-pointer hover:shadow-[#4f4995]  ${eje.complete && "borderComplete"}`}
             src={eje.src}
             alt={eje.alt}
           />
