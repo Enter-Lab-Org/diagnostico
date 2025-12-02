@@ -14,8 +14,10 @@ const loginSchema = z.object({
 
 type LoginFormData = z.infer<typeof loginSchema>;
 
+import { LoginResponse } from "@/app/lib/api/auth.service";
+
 interface FormLoginProps {
-  onSuccess?: (data: { access_token: string; user: { id: string; email: string; name?: string } }) => void;
+  onSuccess?: (data: LoginResponse) => void;
 }
 
 export const FormLogin = ({ onSuccess }: FormLoginProps) => {

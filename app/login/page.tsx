@@ -2,12 +2,13 @@
 import { useState } from "react";
 import { FormLogin } from "./components/FormLogin";
 import SuccessLogin from "./components/SuccessLogin";
+import { LoginResponse } from "@/app/lib/api/auth.service";
 
 const LoginPage = () => {
   const [loginSuccess, setLoginSuccess] = useState(false);
-  const [loginData, setLoginData] = useState<{ access_token: string; user: { id: string; email: string; name?: string } } | null>(null);
+  const [loginData, setLoginData] = useState<LoginResponse | null>(null);
 
-  const handleLoginSuccess = (data: { access_token: string; user: { id: string; email: string; name?: string } }) => {
+  const handleLoginSuccess = (data: LoginResponse) => {
     // Guardar el token en localStorage o en un estado global
     if (typeof window !== 'undefined') {
       localStorage.setItem('access_token', data.access_token);

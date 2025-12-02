@@ -6,13 +6,33 @@ export interface LoginRequest {
   password: string;
 }
 
+// User interface matching the backend User model (without password)
+export interface User {
+  id: string;
+  email: string;
+  nombre: string;
+  apellidoPaterno: string;
+  apellidoMaterno: string;
+  curp?: string | null;
+  sexo: string;
+  fechaNacimiento: string;
+  entidadFederativaNacimiento: string;
+  municipioResidencia: string;
+  entidadFederativaResidencia: string;
+  calle: string;
+  numeroExterior: string;
+  numeroInterior?: string | null;
+  codigoPostal: string;
+  whatsapp: string;
+  perfil: string;
+  areaConocimiento: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface LoginResponse {
   access_token: string;
-  user: {
-    id: string;
-    email: string;
-    name?: string;
-  };
+  user: User;
 }
 
 export const authService = {
