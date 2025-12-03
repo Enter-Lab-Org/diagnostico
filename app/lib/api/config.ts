@@ -5,6 +5,11 @@ export const API_ENDPOINTS = {
     LOGIN: '/auth/login',
     REGISTER: '/auth/register',
   },
+  EMPRESAS: {
+    CREATE: '/empresas',
+    FIND_ALL: '/empresas',
+    FIND_BY_USER_ID: '/empresas/user',
+  },
 } as const;
 
 
