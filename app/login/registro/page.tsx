@@ -60,7 +60,7 @@ const RegistroLoginPage = () => {
                 <div className="md:mx-10 flex flex-col bg-blue-50 rounded-xl align-center justify-center items-center p-2 md:p-14">
                     <img className="w-32" src="/assets/logo.svg" alt="logo" />
                     <div className="flex flex-col gap-5">
-                        <form className="flex flex-col md:grid md:grid-cols-2 gap-4 w-80 md:w-full mt-6" onSubmit={handleSubmit}>
+                        <form className="flex flex-col md:grid md:grid-cols-2 gap-4 w-80 md:w-full mt-6 p-2" onSubmit={handleSubmit}>
                             <input
                                 type="text"
                                 name="nombres"
