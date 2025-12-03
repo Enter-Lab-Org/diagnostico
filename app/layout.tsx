@@ -66,7 +66,7 @@ export default function RootLayout({
               </div>
 
               <DisclosurePanel className="sm:hidden">
-                <div className="space-y-1 pt-2 pb-4">
+                <div className="space-y-1 pt-2 pb-4 pl-4">
                   {/* Contenido del menu de hamburguesa */}
                   <Routes />
                 </div>
