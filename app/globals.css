@@ -178,6 +178,16 @@ body {
   border: 1px solid var(--primary-purple);
   border-radius: 10px;
 }
+.navLinks{
+  font-family: var(--regular-body);
+  color: var(--primary-gray);
+  font-weight: 300;
+  font-size: 16px;
+}
+.navLinks:hover, .navLinks:active{
+  color: var(--primary-purple);
+  font-weight: 400;
+}
 .cardsBackground{
   background-color: var(--secondary-gray);
 }
@@ -209,6 +219,9 @@ body {
 }
 .placeholder__montserrat{
   font-family: var(--light-body);
+}
+.borderComplete{
+  border: 3px solid var(--primary-purple);
 }
 
 /*bounce animation*/
