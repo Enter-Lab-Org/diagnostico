@@ -44,7 +44,7 @@ export default function IniciarDiagnostico() {
     <div className="flex flex-col md:flex-row md:gap-4 my-5 px-6 md:px-24">
       <div className="flex flex-col md:gap-2 order-2 md:order-1">
         <p className="greyText textItalic">
-          <span className="textRegular"><strong>Bienvenido a EnterLab</strong></span> donde la tecnología de última generación y la innovación se unen para impulsar el crecimiento y la transformación de empresas, gobiernos e instituciones.<br/>
+          <span className="textRegular"><strong>Bienvenido a EnterLab</strong></span> donde la tecnología de última generación y la innovación se unen para impulsar el crecimiento y la transformación de empresas, gobiernos e instituciones.<br />
           Descubre cómo podemos ayudarte a alcanzar tus objetivos mediante soluciones personalizadas y capacitación de vanguardia.
         </p>
       </div>
@@ -62,7 +62,7 @@ export default function IniciarDiagnostico() {
     </GradientContainer>
     <div className="flex flex-row gap-4 justify-center my-5">
       {/* TODO: Agregar context para revisar si el usuario está logueado */}
-      <Link href={APP_ROUTES.LOGIN} className="text-white  p-2 rounded-lg px-5 font-extrabold text-center botonDiagnostico bounceButton">
+      <Link href={APP_ROUTES.REGISTRO_EMPRESAS} className="text-white  p-2 rounded-lg px-5 font-extrabold text-center botonDiagnostico bounceButton">
         Iniciar diagnóstico
       </Link>
     </div>`
