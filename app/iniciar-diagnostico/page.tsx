@@ -32,24 +32,18 @@ export default function Home() {
         try {
           setIsInitializing(true);
           
-          // Buscar diagnósticos existentes para esta empresa
-          const diagnosticos = await diagnosticosService.findAll(empresaId);
+          // Buscar cuestionarios existentes para esta empresa
+          const cuestionarios = await diagnosticosService.findAll(empresaId);
           
-          // Buscar un diagnóstico no completado o crear uno nuevo
-          let diagnostico = diagnosticos.find(d => !d.completado);
-          
-          if (!diagnostico) {
-            // Crear un nuevo diagnóstico
-            diagnostico = await diagnosticosService.create({ empresaId });
+          // Si no hay cuestionarios, crearlos
+          if (cuestionarios.length === 0) {
+            await diagnosticosService.create({ empresaId });
           }
           
-          // Guardar diagnosticoId en localStorage
-          localStorage.setItem('diagnosticoId', diagnostico.id);
-          
-          console.log('Diagnóstico inicializado:', diagnostico.id);
+          console.log('Cuestionarios inicializados para empresa:', empresaId);
         } catch (error) {
-          console.error('Error al inicializar diagnóstico:', error);
-          alert(`Error al inicializar el diagnóstico: ${error instanceof Error ? error.message : 'Error desconocido'}`);
+          console.error('Error al inicializar cuestionarios:', error);
+          alert(`Error al inicializar los cuestionarios: ${error instanceof Error ? error.message : 'Error desconocido'}`);
         } finally {
           setIsInitializing(false);
         }

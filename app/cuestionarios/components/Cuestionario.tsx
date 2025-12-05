@@ -63,19 +63,12 @@ export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances, nextRo
     try {
       setIsSaving(true);
       
-      // Obtener empresaId y diagnosticoId del localStorage
+      // Obtener empresaId del localStorage
       const empresaId = localStorage.getItem('empresaId');
-      const diagnosticoId = localStorage.getItem('diagnosticoId');
       
       if (!empresaId) {
         console.error('No se encontró empresaId en localStorage');
         alert('Error: No se encontró la empresa. Por favor, selecciona una empresa primero.');
-        return;
-      }
-
-      if (!diagnosticoId) {
-        console.error('No se encontró diagnosticoId en localStorage');
-        alert('Error: No se encontró el diagnóstico. Por favor, inicia un diagnóstico primero.');
         return;
       }
 
@@ -111,8 +104,8 @@ export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances, nextRo
         respuestas,
       };
 
-      // Guardar respuestas en la API
-      await diagnosticosService.guardarRespuestas(diagnosticoId, guardarRespuestasDto);
+      // Guardar respuestas en la API usando empresaId
+      await diagnosticosService.guardarRespuestas(empresaId, guardarRespuestasDto);
       
       console.log('Respuestas guardadas exitosamente');
       setIsFinished(true);

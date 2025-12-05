@@ -28,29 +28,24 @@ export interface CreateDiagnosticoDto {
   empresaId: string;
 }
 
-export interface Diagnostico {
-  id: string;
-  empresaId: string;
-  fechaInicio: string;
-  fechaFinalizacion: string | null;
-  completado: boolean;
-  puntajeTotal: number | null;
-  nivelMadurez: string | null;
-  cuestionarios: CuestionarioRespuesta[];
-  createdAt: string;
-  updatedAt: string;
-}
-
 export interface CuestionarioRespuesta {
   id: string;
-  diagnosticoId: string;
+  empresaId: string;
   categoria: CategoriaCuestionario;
   completado: boolean;
   puntajeObtenido: number | null;
   puntajeMaximo: number | null;
-  porcentaje: number | null;
+  fechaInicio: string;
   fechaCompletado: string | null;
-  respuestas: RespuestaIndividual[];
+  createdAt: string;
+  updatedAt: string;
+  respuestas?: RespuestaIndividual[];
+  empresa?: any;
+}
+
+export interface EmpresaConCuestionarios {
+  empresa: any;
+  cuestionarios: CuestionarioRespuesta[];
 }
 
 export interface RespuestaIndividual {
@@ -63,65 +58,68 @@ export interface RespuestaIndividual {
 }
 
 export interface ProgresoDiagnostico {
-  diagnosticoId: string;
+  empresaId: string;
   completado: boolean;
   porcentajeProgreso: number;
   cuestionariosCompletados: number;
   totalCuestionarios: number;
+  puntajeTotal: number | null;
+  nivelMadurez: string | null;
   cuestionarios: Array<{
     categoria: CategoriaCuestionario;
     completado: boolean;
-    porcentaje: number | null;
+    puntajeObtenido: number | null;
+    puntajeMaximo: number | null;
     fechaCompletado: string | null;
   }>;
 }
 
 export const diagnosticosService = {
-  async create(data: CreateDiagnosticoDto): Promise<Diagnostico> {
-    const response = await apiClient.post<Diagnostico>(
+  async create(data: CreateDiagnosticoDto): Promise<CuestionarioRespuesta[]> {
+    const response = await apiClient.post<CuestionarioRespuesta[]>(
       API_ENDPOINTS.DIAGNOSTICOS.CREATE,
       data
     );
     return response.data;
   },
 
-  async findAll(empresaId?: string): Promise<Diagnostico[]> {
+  async findAll(empresaId?: string): Promise<CuestionarioRespuesta[]> {
     const params = empresaId ? { empresaId } : {};
-    const response = await apiClient.get<Diagnostico[]>(
+    const response = await apiClient.get<CuestionarioRespuesta[]>(
       API_ENDPOINTS.DIAGNOSTICOS.FIND_ALL,
       { params }
     );
     return response.data;
   },
 
-  async findOne(id: string): Promise<Diagnostico> {
-    const response = await apiClient.get<Diagnostico>(
-      API_ENDPOINTS.DIAGNOSTICOS.FIND_ONE(id)
+  async findByEmpresa(empresaId: string): Promise<EmpresaConCuestionarios> {
+    const response = await apiClient.get<EmpresaConCuestionarios>(
+      API_ENDPOINTS.DIAGNOSTICOS.FIND_BY_EMPRESA(empresaId)
     );
     return response.data;
   },
 
-  async getProgreso(id: string): Promise<ProgresoDiagnostico> {
+  async getProgreso(empresaId: string): Promise<ProgresoDiagnostico> {
     const response = await apiClient.get<ProgresoDiagnostico>(
-      API_ENDPOINTS.DIAGNOSTICOS.GET_PROGRESO(id)
+      API_ENDPOINTS.DIAGNOSTICOS.GET_PROGRESO(empresaId)
     );
     return response.data;
   },
 
   async guardarRespuestas(
-    diagnosticoId: string,
+    empresaId: string,
     data: GuardarRespuestasDto
   ): Promise<CuestionarioRespuesta> {
     const response = await apiClient.patch<CuestionarioRespuesta>(
-      API_ENDPOINTS.DIAGNOSTICOS.GUARDAR_RESPUESTAS(diagnosticoId),
+      API_ENDPOINTS.DIAGNOSTICOS.GUARDAR_RESPUESTAS(empresaId),
       data
     );
     return response.data;
   },
 
-  async remove(id: string): Promise<Diagnostico> {
-    const response = await apiClient.delete<Diagnostico>(
-      API_ENDPOINTS.DIAGNOSTICOS.FIND_ONE(id)
+  async remove(empresaId: string): Promise<{ message: string }> {
+    const response = await apiClient.delete<{ message: string }>(
+      API_ENDPOINTS.DIAGNOSTICOS.REMOVE(empresaId)
     );
     return response.data;
   },
