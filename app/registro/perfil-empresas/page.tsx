@@ -94,6 +94,8 @@ const PerfilEmpresasPage = () => {
         setIsLoading(true);
 
         try {
+            let empresaIdFinal = empresaId;
+            
             if (empresaId) {
                 // Modo edición: actualizar empresa existente
                 await empresasService.update(empresaId, {
@@ -107,7 +109,7 @@ const PerfilEmpresasPage = () => {
                 });
             } else {
                 // Modo creación: crear nueva empresa
-                await empresasService.create({
+                const nuevaEmpresa = await empresasService.create({
                     razonSocial: razonSocial.trim(),
                     rfc: rfc.trim().toUpperCase(),
                     tamano: tamanoEmpresa as TamanoEmpresa,
@@ -117,10 +119,16 @@ const PerfilEmpresasPage = () => {
                     municipio: municipio.trim(),
                     userId: user.id,
                 });
+                empresaIdFinal = nuevaEmpresa.id;
+            }
+
+            // Guardar empresaId en localStorage
+            if (empresaIdFinal) {
+                localStorage.setItem('empresaId', empresaIdFinal);
             }
 
             // Redirigir después de crear/actualizar la empresa exitosamente
-            router.push(APP_ROUTES.INICIAR_DIAGNOSTICO);
+            router.push(`${APP_ROUTES.INICIAR_DIAGNOSTICO}?empresaId=${empresaIdFinal}`);
         } catch (err) {
             const errorMessage = err instanceof Error 
                 ? err.message 

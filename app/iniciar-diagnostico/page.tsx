@@ -1,7 +1,10 @@
 "use client";
 
 import { ProtectedRoute } from "@/app/common/components/ProtectedRoute";
+import { diagnosticosService } from "@/app/lib/api/diagnosticos.service";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { APP_ROUTES } from "../router/app.routes";
 
 const ejesDiagnostico = [
@@ -15,11 +18,55 @@ const ejesDiagnostico = [
 ];
 
 export default function Home() {
+  const searchParams = useSearchParams();
+  const [isInitializing, setIsInitializing] = useState(false);
+
+  useEffect(() => {
+    const initializeDiagnostico = async () => {
+      const empresaId = searchParams.get('empresaId');
+      
+      if (empresaId) {
+        // Guardar empresaId en localStorage
+        localStorage.setItem('empresaId', empresaId);
+        
+        try {
+          setIsInitializing(true);
+          
+          // Buscar diagnósticos existentes para esta empresa
+          const diagnosticos = await diagnosticosService.findAll(empresaId);
+          
+          // Buscar un diagnóstico no completado o crear uno nuevo
+          let diagnostico = diagnosticos.find(d => !d.completado);
+          
+          if (!diagnostico) {
+            // Crear un nuevo diagnóstico
+            diagnostico = await diagnosticosService.create({ empresaId });
+          }
+          
+          // Guardar diagnosticoId en localStorage
+          localStorage.setItem('diagnosticoId', diagnostico.id);
+          
+          console.log('Diagnóstico inicializado:', diagnostico.id);
+        } catch (error) {
+          console.error('Error al inicializar diagnóstico:', error);
+          alert(`Error al inicializar el diagnóstico: ${error instanceof Error ? error.message : 'Error desconocido'}`);
+        } finally {
+          setIsInitializing(false);
+        }
+      }
+    };
+
+    initializeDiagnostico();
+  }, [searchParams]);
+
   return (
     <ProtectedRoute>
       <div className="flex flex-col gap-5 shadow-xl rounded-xl px-6 md:px-34 py-14 items-center justify-center cardsBackground">
         <h1 className="text-2xl font-extrabold text-center text-gray-400 cardsTitle">Ejes de diagnóstico</h1>
         <p className="textGray textRegular">Responde los cuestionarios para generar el diagnostico de tu empresa</p>
+        {isInitializing && (
+          <p className="text-gray-500 text-sm">Inicializando diagnóstico...</p>
+        )}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
           {ejesDiagnostico.map((eje, index) => (
             <Link href={eje.href} key={index} className="flex flex-col md:flex-row gap-2 items-center justify-center ">

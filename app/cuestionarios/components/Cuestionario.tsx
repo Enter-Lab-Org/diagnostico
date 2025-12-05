@@ -1,7 +1,10 @@
 "use client";
 
+import { getCategoriaFromRoute } from "@/app/cuestionarios/utils/categoria-mapper";
+import { inicializarDiagnostico } from "@/app/cuestionarios/utils/diagnostico-helper";
 import { calculatePercentage } from "@/app/helpers";
-import { useRouter } from "next/navigation";
+import { diagnosticosService, GuardarRespuestasDto } from "@/app/lib/api/diagnosticos.service";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import type { QuestionData } from "../types";
@@ -17,21 +20,108 @@ type CuestionarioProps = {
 
 export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances, nextRoute }: CuestionarioProps) => {
   const { push } = useRouter();
+  const pathname = usePathname();
   const [currentStep, setCurrentStep] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [isInitializing, setIsInitializing] = useState(true);
   const {
     register,
     handleSubmit,
     formState: { errors },
     trigger,
+    getValues,
   } = useForm();
 
-  const handleFormSubmit = (data: FieldValues) => {
+  // Inicializar diagnóstico al cargar el componente
+  useEffect(() => {
+    const init = async () => {
+      try {
+        await inicializarDiagnostico();
+      } catch (error) {
+        console.error('Error al inicializar diagnóstico:', error);
+        alert(`Error al inicializar el diagnóstico: ${error instanceof Error ? error.message : 'Error desconocido'}`);
+      } finally {
+        setIsInitializing(false);
+      }
+    };
+
+    init();
+  }, []);
+
+  const handleFormSubmit = async (data: FieldValues) => {
     if (onSubmit) {
       onSubmit(data);
       return;
     }
-    console.log(data);
+    
+    // Guardar respuestas en la API
+    await guardarRespuestasEnAPI(data);
+  };
+
+  const guardarRespuestasEnAPI = async (data: FieldValues) => {
+    try {
+      setIsSaving(true);
+      
+      // Obtener empresaId y diagnosticoId del localStorage
+      const empresaId = localStorage.getItem('empresaId');
+      const diagnosticoId = localStorage.getItem('diagnosticoId');
+      
+      if (!empresaId) {
+        console.error('No se encontró empresaId en localStorage');
+        alert('Error: No se encontró la empresa. Por favor, selecciona una empresa primero.');
+        return;
+      }
+
+      if (!diagnosticoId) {
+        console.error('No se encontró diagnosticoId en localStorage');
+        alert('Error: No se encontró el diagnóstico. Por favor, inicia un diagnóstico primero.');
+        return;
+      }
+
+      // Obtener la categoría del cuestionario actual
+      const categoria = getCategoriaFromRoute(pathname);
+      if (!categoria) {
+        console.error('No se pudo determinar la categoría del cuestionario');
+        alert('Error: No se pudo determinar la categoría del cuestionario.');
+        return;
+      }
+
+      // Transformar las respuestas del formulario al formato de la API
+      const respuestas: GuardarRespuestasDto['respuestas'] = preguntas.map((pregunta, index) => {
+        const numeroPregunta = index + 1;
+        const respuestaKey = `q${numeroPregunta}`;
+        const valorSeleccionado = parseInt(data[respuestaKey] as string, 10);
+        
+        // Encontrar la respuesta seleccionada para obtener el texto
+        const respuestaSeleccionada = pregunta.answers.find(
+          (answer) => answer.value === valorSeleccionado
+        );
+
+        return {
+          numeroPregunta,
+          preguntaTexto: pregunta.question,
+          valorSeleccionado,
+          textoRespuesta: respuestaSeleccionada?.label || '',
+        };
+      });
+
+      const guardarRespuestasDto: GuardarRespuestasDto = {
+        categoria,
+        respuestas,
+      };
+
+      // Guardar respuestas en la API
+      await diagnosticosService.guardarRespuestas(diagnosticoId, guardarRespuestasDto);
+      
+      console.log('Respuestas guardadas exitosamente');
+      setIsFinished(true);
+    } catch (error) {
+      console.error('Error al guardar respuestas:', error);
+      alert(`Error al guardar las respuestas: ${error instanceof Error ? error.message : 'Error desconocido'}`);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const SubmitButton = useMemo(
@@ -42,15 +132,32 @@ export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances, nextRo
           if (!isValid) {
             return;
           }
-          setIsFinished(true);
+          
+          // Obtener todos los valores del formulario
+          const formData = getValues();
+          
+          // Validar que todas las preguntas estén respondidas
+          const todasRespondidas = preguntas.every((_, index) => {
+            const respuestaKey = `q${index + 1}`;
+            return formData[respuestaKey] !== undefined && formData[respuestaKey] !== null;
+          });
+
+          if (!todasRespondidas) {
+            alert('Por favor, responde todas las preguntas antes de finalizar.');
+            return;
+          }
+
+          // Guardar respuestas
+          await handleFormSubmit(formData);
         }}
         type="button"
-        className="px-20 py-3 rounded-xl font-extrabold bg-primary-purple text-white hover:bg-secondary-purple"
+        disabled={isSaving}
+        className="px-20 py-3 rounded-xl font-extrabold bg-primary-purple text-white hover:bg-secondary-purple disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Finalizar
+        {isSaving ? 'Guardando...' : 'Finalizar'}
       </button>
     ),
-    [currentStep, trigger]
+    [currentStep, trigger, getValues, preguntas, isSaving]
   );
 
   const NextRouteButton = useMemo(
@@ -105,6 +212,14 @@ export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances, nextRo
     />
   ));
 
+
+  if (isInitializing) {
+    return (
+      <div className="flex flex-col gap-4 p-6 items-center justify-center">
+        <p className="text-gray-500">Inicializando cuestionario...</p>
+      </div>
+    );
+  }
 
   if (isFinished) {
     return <FinalCuestionario nextStepButton={NextRouteButton} />;
