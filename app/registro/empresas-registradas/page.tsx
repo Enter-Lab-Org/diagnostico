@@ -2,6 +2,8 @@
 
 import { User } from '@/app/lib/api/auth.service';
 import { Empresa, empresasService } from '@/app/lib/api/empresas.service';
+import { APP_ROUTES } from '@/app/router/app.routes';
+import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 import { EmpresaRecordItem } from './components/EmpresaRecordItem';
 
@@ -59,7 +61,15 @@ const EmpresasRegistradasPage = () => {
     return (
         <div className="flex flex-col gap-5 text-gray-400">
             {empresas.length === 0 ? (
-                <p className="textRegular text-gray-500">No tienes empresas registradas.</p>
+                <div className="flex flex-col gap-4 items-center">
+                    <p className="textRegular text-gray-500">No tienes empresas registradas.</p>
+                    <Link 
+                        href={APP_ROUTES.PERFIL_EMPRESAS} 
+                        className="subTitle textPurple botonPurpleLine text-center p-2 px-4 md:px-24"
+                    >
+                        Registrar empresa
+                    </Link>
+                </div>
             ) : (
                 <div className="flex flex-col gap-4">
                     {empresas.map((empresa) => (

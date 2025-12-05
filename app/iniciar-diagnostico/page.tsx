@@ -5,7 +5,7 @@ import { diagnosticosService } from "@/app/lib/api/diagnosticos.service";
 import { usePorcentajeAvancesStore } from "@/app/store/porcentajeAvances";
 import { useSeccionesCompletadasStore } from "@/app/store/seccionesCompletadas";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { APP_ROUTES } from "../router/app.routes";
 
@@ -13,6 +13,7 @@ import { APP_ROUTES } from "../router/app.routes";
 
 export default function Home() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const [isInitializing, setIsInitializing] = useState(false);
   const cargarPorcentajes = usePorcentajeAvancesStore((state) => state.cargarDesdeAPI);
   const cargarSecciones = useSeccionesCompletadasStore((state) => state.cargarDesdeAPI);
@@ -33,39 +34,42 @@ export default function Home() {
     const initializeDiagnostico = async () => {
       const empresaId = searchParams.get('empresaId');
 
-      if (empresaId) {
-        // Guardar empresaId en localStorage
-        localStorage.setItem('empresaId', empresaId);
+      if (!empresaId) {
+        router.push(APP_ROUTES.EMPRESAS_REGISTRADAS);
+        return;
+      }
 
-        try {
-          setIsInitializing(true);
+      // Guardar empresaId en localStorage
+      localStorage.setItem('empresaId', empresaId);
 
-          // Buscar cuestionarios existentes para esta empresa
-          const cuestionarios = await diagnosticosService.findAll(empresaId);
+      try {
+        setIsInitializing(true);
 
-          // Si no hay cuestionarios, crearlos
-          if (cuestionarios.length === 0) {
-            await diagnosticosService.create({ empresaId });
-          }
+        // Buscar cuestionarios existentes para esta empresa
+        const cuestionarios = await diagnosticosService.findAll(empresaId);
 
-          // Cargar los stores desde la API
-          await Promise.all([
-            cargarPorcentajes(empresaId),
-            cargarSecciones(empresaId),
-          ]);
-
-          console.log('Cuestionarios inicializados para empresa:', empresaId);
-        } catch (error) {
-          console.error('Error al inicializar cuestionarios:', error);
-          alert(`Error al inicializar los cuestionarios: ${error instanceof Error ? error.message : 'Error desconocido'}`);
-        } finally {
-          setIsInitializing(false);
+        // Si no hay cuestionarios, crearlos
+        if (cuestionarios.length === 0) {
+          await diagnosticosService.create({ empresaId });
         }
+
+        // Cargar los stores desde la API
+        await Promise.all([
+          cargarPorcentajes(empresaId),
+          cargarSecciones(empresaId),
+        ]);
+
+        console.log('Cuestionarios inicializados para empresa:', empresaId);
+      } catch (error) {
+        console.error('Error al inicializar cuestionarios:', error);
+        alert(`Error al inicializar los cuestionarios: ${error instanceof Error ? error.message : 'Error desconocido'}`);
+      } finally {
+        setIsInitializing(false);
       }
     };
 
     initializeDiagnostico();
-  }, [searchParams, cargarPorcentajes, cargarSecciones]);
+  }, [searchParams, cargarPorcentajes, cargarSecciones, router]);
 
   return (
     <ProtectedRoute>
