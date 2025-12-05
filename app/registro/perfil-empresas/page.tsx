@@ -1,14 +1,18 @@
 'use client';
 
-import { APP_ROUTES } from '@/app/router/app.routes';
-import { empresasService, TamanoEmpresa } from '@/app/lib/api/empresas.service';
-import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
 import { User } from '@/app/lib/api/auth.service';
+import { empresasService, TamanoEmpresa } from '@/app/lib/api/empresas.service';
+import { APP_ROUTES } from '@/app/router/app.routes';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 const PerfilEmpresasPage = () => {
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const empresaId = searchParams.get('empresaId');
+    
     const [isLoading, setIsLoading] = useState(false);
+    const [isLoadingData, setIsLoadingData] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [user, setUser] = useState<User | null>(null);
 
@@ -38,6 +42,33 @@ const PerfilEmpresasPage = () => {
         }
     }, []);
 
+    useEffect(() => {
+        // Si existe empresaId, cargar los datos de la empresa
+        const loadEmpresaData = async () => {
+            if (empresaId && user) {
+                setIsLoadingData(true);
+                setError(null);
+                try {
+                    const empresa = await empresasService.findOne(empresaId);
+                    setRazonSocial(empresa.razonSocial);
+                    setRfc(empresa.rfc);
+                    setTamanoEmpresa(empresa.tamano);
+                    setActividad(empresa.actividad);
+                    setPais(empresa.pais);
+                    setEstado(empresa.estado);
+                    setMunicipio(empresa.municipio);
+                } catch (err) {
+                    const errorMessage = err instanceof Error ? err.message : 'Error al cargar la información de la empresa.';
+                    setError(errorMessage);
+                } finally {
+                    setIsLoadingData(false);
+                }
+            }
+        };
+
+        loadEmpresaData();
+    }, [empresaId, user]);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError(null);
@@ -63,21 +94,39 @@ const PerfilEmpresasPage = () => {
         setIsLoading(true);
 
         try {
-            await empresasService.create({
-                razonSocial: razonSocial.trim(),
-                rfc: rfc.trim().toUpperCase(),
-                tamano: tamanoEmpresa as TamanoEmpresa,
-                actividad: actividad.trim(),
-                pais: pais.trim(),
-                estado: estado.trim(),
-                municipio: municipio.trim(),
-                userId: user.id,
-            });
+            if (empresaId) {
+                // Modo edición: actualizar empresa existente
+                await empresasService.update(empresaId, {
+                    razonSocial: razonSocial.trim(),
+                    rfc: rfc.trim().toUpperCase(),
+                    tamano: tamanoEmpresa as TamanoEmpresa,
+                    actividad: actividad.trim(),
+                    pais: pais.trim(),
+                    estado: estado.trim(),
+                    municipio: municipio.trim(),
+                });
+            } else {
+                // Modo creación: crear nueva empresa
+                await empresasService.create({
+                    razonSocial: razonSocial.trim(),
+                    rfc: rfc.trim().toUpperCase(),
+                    tamano: tamanoEmpresa as TamanoEmpresa,
+                    actividad: actividad.trim(),
+                    pais: pais.trim(),
+                    estado: estado.trim(),
+                    municipio: municipio.trim(),
+                    userId: user.id,
+                });
+            }
 
-            // Redirigir después de crear la empresa exitosamente
+            // Redirigir después de crear/actualizar la empresa exitosamente
             router.push(APP_ROUTES.INICIAR_DIAGNOSTICO);
         } catch (err) {
-            const errorMessage = err instanceof Error ? err.message : 'Error al crear la empresa. Por favor, intenta nuevamente.';
+            const errorMessage = err instanceof Error 
+                ? err.message 
+                : empresaId 
+                    ? 'Error al actualizar la empresa. Por favor, intenta nuevamente.' 
+                    : 'Error al crear la empresa. Por favor, intenta nuevamente.';
             setError(errorMessage);
         } finally {
             setIsLoading(false);
@@ -99,7 +148,7 @@ const PerfilEmpresasPage = () => {
                     className="col-span-3 w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                     value={razonSocial}
                     onChange={(e) => setRazonSocial(e.target.value)}
-                    disabled={isLoading || !user}
+                    disabled={isLoading || isLoadingData || !user}
                     required
                 />
                 <input
@@ -108,7 +157,7 @@ const PerfilEmpresasPage = () => {
                     className="col-span-3 md:col-span-1 w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                     value={rfc}
                     onChange={(e) => setRfc(e.target.value.toUpperCase())}
-                    disabled={isLoading || !user}
+                    disabled={isLoading || isLoadingData || !user}
                     maxLength={13}
                     required
                 />
@@ -116,7 +165,7 @@ const PerfilEmpresasPage = () => {
                     className="col-span-3 md:col-span-1 w-full p-2 rounded-md bg-gray-300 text-gray-700 placeholder__montserrat border-0"
                     value={tamanoEmpresa}
                     onChange={(e) => setTamanoEmpresa(e.target.value as TamanoEmpresa)}
-                    disabled={isLoading || !user}
+                    disabled={isLoading || isLoadingData || !user}
                     required
                 >
                     <option value="">Tamaño de la empresa *</option>
@@ -131,7 +180,7 @@ const PerfilEmpresasPage = () => {
                     className="col-span-3 md:col-span-1 w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                     value={actividad}
                     onChange={(e) => setActividad(e.target.value)}
-                    disabled={isLoading || !user}
+                    disabled={isLoading || isLoadingData || !user}
                     required
                 />
                 <input
@@ -140,7 +189,7 @@ const PerfilEmpresasPage = () => {
                     className="col-span-3 md:col-span-1 w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                     value={pais}
                     onChange={(e) => setPais(e.target.value)}
-                    disabled={isLoading || !user}
+                    disabled={isLoading || isLoadingData || !user}
                     required
                 />
                 <input
@@ -149,7 +198,7 @@ const PerfilEmpresasPage = () => {
                     className="col-span-3 md:col-span-1 w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                     value={estado}
                     onChange={(e) => setEstado(e.target.value)}
-                    disabled={isLoading || !user}
+                    disabled={isLoading || isLoadingData || !user}
                     required
                 />
                 <input
@@ -158,16 +207,18 @@ const PerfilEmpresasPage = () => {
                     className="col-span-3 md:col-span-1 w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                     value={municipio}
                     onChange={(e) => setMunicipio(e.target.value)}
-                    disabled={isLoading || !user}
+                    disabled={isLoading || isLoadingData || !user}
                     required
                 />
 
                 <button
                     type="submit"
-                    disabled={isLoading || !user}
+                    disabled={isLoading || isLoadingData || !user}
                     className="buttonPurple1 subTitle text-white p-2 text-center rounded-xl border-2 col-span-3 md:col-span-1 w-full font-extrabold disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                    {isLoading ? 'Creando...' : 'Continuar'}
+                    {isLoading 
+                        ? (empresaId ? 'Actualizando...' : 'Creando...') 
+                        : (empresaId ? 'Actualizar' : 'Continuar')}
                 </button>
             </form>
             <p className="text-sm text-gray-400">Los campos con * son obligatorios</p>
