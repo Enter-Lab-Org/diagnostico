@@ -1,8 +1,10 @@
 "use client";
+import { LoginResponse } from "@/app/lib/api/auth.service";
+
 import { useState } from "react";
+import { APP_ROUTES } from "../router/app.routes";
 import { FormLogin } from "./components/FormLogin";
 import SuccessLogin from "./components/SuccessLogin";
-import { LoginResponse } from "@/app/lib/api/auth.service";
 
 const LoginPage = () => {
   const [loginSuccess, setLoginSuccess] = useState(false);
@@ -18,13 +20,15 @@ const LoginPage = () => {
     setLoginSuccess(true);
   };
 
+
+
   return (
     <>
       <h1 className="text-white text-2xl font-extrabold text-center boxTitle">
         Inicia sesion o registrate para realizar tu diagnóstico
       </h1>
       {loginSuccess ? (
-        <SuccessLogin message="Acceso correcto" />
+        <SuccessLogin message="Acceso correcto" route={APP_ROUTES.INICIAR_DIAGNOSTICO} />
       ) : (
         <FormLogin onSuccess={handleLoginSuccess} />
       )}

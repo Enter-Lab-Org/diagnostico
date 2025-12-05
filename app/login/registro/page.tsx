@@ -123,7 +123,7 @@ const RegistroLoginPage = () => {
             };
 
             const response = await authService.register(registerData);
-            
+
             // Guardar el token en localStorage
             if (typeof window !== 'undefined') {
                 localStorage.setItem('access_token', response.access_token);
@@ -131,6 +131,7 @@ const RegistroLoginPage = () => {
             }
 
             setRegistroSuccess(true);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
             setError(err.message || 'Error al crear la cuenta. Por favor intenta de nuevo.');
         } finally {
@@ -138,20 +139,11 @@ const RegistroLoginPage = () => {
         }
     };
 
-    useEffect(() => {
-        if (registroSuccess) {
-            const timer = setTimeout(() => {
-                router.push(APP_ROUTES.REGISTRO_EMPRESAS);
-            }, 2000);
-
-            return () => clearTimeout(timer);
-        }
-    }, [registroSuccess, router]);
 
     return (
         <>
             {registroSuccess ? (
-                <SuccessLogin message="Cuenta creada correctamente" />
+                <SuccessLogin message="Cuenta creada correctamente" route={APP_ROUTES.REGISTRO_EMPRESAS} />
             ) : (
                 <div className="md:mx-10 flex flex-col bg-blue-50 rounded-xl align-center justify-center items-center p-2 md:p-14">
                     <img className="w-32" src="/assets/logo.svg" alt="logo" />

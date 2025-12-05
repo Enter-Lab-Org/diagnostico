@@ -11,7 +11,7 @@ const PerfilEmpresasPage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [user, setUser] = useState<User | null>(null);
-    
+
     const [razonSocial, setRazonSocial] = useState('');
     const [rfc, setRfc] = useState('');
     const [tamanoEmpresa, setTamanoEmpresa] = useState<TamanoEmpresa | ''>('');
@@ -43,7 +43,7 @@ const PerfilEmpresasPage = () => {
         setError(null);
 
         // Validación básica
-        if (!razonSocial.trim() || !rfc.trim() || !tamanoEmpresa || !actividad.trim() || 
+        if (!razonSocial.trim() || !rfc.trim() || !tamanoEmpresa || !actividad.trim() ||
             !pais.trim() || !estado.trim() || !municipio.trim()) {
             setError('Por favor, completa todos los campos obligatorios.');
             return;
@@ -86,10 +86,6 @@ const PerfilEmpresasPage = () => {
 
     return (
         <div className="flex flex-col gap-5 text-gray-400">
-            <h1 className=" text-2xl font-extrabold text-center cardsTitle">Perfil de empresas</h1>
-            <p className="textRegular textGray">En esta sección puedes medir el nivel de digitalización de una empresa u organización en la que participes, con el objetivo de poder plantear una ruta de capacitación y digitalización, de manera estructurada.</p>
-            <p className="textRegular textGray">Cada dos meses podrás hacer un test para una misma empresa. Puedes agregar diferentes empresas u organizaciones en las que participes.</p>
-            
             {error && (
                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                     <span className="block sm:inline">{error}</span>
@@ -97,19 +93,19 @@ const PerfilEmpresasPage = () => {
             )}
 
             <form onSubmit={handleSubmit} className="grid grid-cols-3 gap-5">
-                <input 
-                    type="text" 
-                    placeholder="Razón social *" 
-                    className="col-span-3 w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0" 
+                <input
+                    type="text"
+                    placeholder="Razón social *"
+                    className="col-span-3 w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                     value={razonSocial}
                     onChange={(e) => setRazonSocial(e.target.value)}
                     disabled={isLoading || !user}
                     required
                 />
-                <input 
-                    type="text" 
-                    placeholder="RFC *" 
-                    className="col-span-3 md:col-span-1 w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0" 
+                <input
+                    type="text"
+                    placeholder="RFC *"
+                    className="col-span-3 md:col-span-1 w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                     value={rfc}
                     onChange={(e) => setRfc(e.target.value.toUpperCase())}
                     disabled={isLoading || !user}
@@ -129,44 +125,44 @@ const PerfilEmpresasPage = () => {
                     <option value="MEDIANA">Mediana</option>
                     <option value="GRANDE">Grande</option>
                 </select>
-                <input 
-                    type="text" 
-                    placeholder="Actividad *" 
-                    className="col-span-3 md:col-span-1 w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0" 
+                <input
+                    type="text"
+                    placeholder="Actividad *"
+                    className="col-span-3 md:col-span-1 w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                     value={actividad}
                     onChange={(e) => setActividad(e.target.value)}
                     disabled={isLoading || !user}
                     required
                 />
-                <input 
-                    type="text" 
-                    placeholder="País *" 
-                    className="col-span-3 md:col-span-1 w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0" 
+                <input
+                    type="text"
+                    placeholder="País *"
+                    className="col-span-3 md:col-span-1 w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                     value={pais}
                     onChange={(e) => setPais(e.target.value)}
                     disabled={isLoading || !user}
                     required
                 />
-                <input 
-                    type="text" 
-                    placeholder="Estado *" 
-                    className="col-span-3 md:col-span-1 w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0" 
+                <input
+                    type="text"
+                    placeholder="Estado *"
+                    className="col-span-3 md:col-span-1 w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                     value={estado}
                     onChange={(e) => setEstado(e.target.value)}
                     disabled={isLoading || !user}
                     required
                 />
-                <input 
-                    type="text" 
-                    placeholder="Municipio *" 
-                    className="col-span-3 md:col-span-1 w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0" 
+                <input
+                    type="text"
+                    placeholder="Municipio *"
+                    className="col-span-3 md:col-span-1 w-full p-2 rounded-md bg-gray-300 placeholder:text-gray-500 placeholder__montserrat border-0"
                     value={municipio}
                     onChange={(e) => setMunicipio(e.target.value)}
                     disabled={isLoading || !user}
                     required
                 />
-               
-                <button 
+
+                <button
                     type="submit"
                     disabled={isLoading || !user}
                     className="buttonPurple1 subTitle text-white p-2 text-center rounded-xl border-2 col-span-3 md:col-span-1 w-full font-extrabold disabled:opacity-50 disabled:cursor-not-allowed"
