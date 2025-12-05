@@ -3,7 +3,9 @@
 import { getCategoriaFromRoute } from "@/app/cuestionarios/utils/categoria-mapper";
 import { inicializarDiagnostico } from "@/app/cuestionarios/utils/diagnostico-helper";
 import { calculatePercentage } from "@/app/helpers";
-import { diagnosticosService, GuardarRespuestasDto } from "@/app/lib/api/diagnosticos.service";
+import { CategoriaCuestionario, diagnosticosService, GuardarRespuestasDto } from "@/app/lib/api/diagnosticos.service";
+import { usePorcentajeAvancesStore } from "@/app/store/porcentajeAvances";
+import { useSeccionesCompletadasStore } from "@/app/store/seccionesCompletadas";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
@@ -32,6 +34,61 @@ export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances, nextRo
     trigger,
     getValues,
   } = useForm();
+  
+  // Stores para actualizar después de guardar
+  const setCalidadCiberseguridad = usePorcentajeAvancesStore((state) => state.setCalidadCiberseguridad);
+  const setCulturaDigital = usePorcentajeAvancesStore((state) => state.setCulturaDigital);
+  const setDatosAnalitica = usePorcentajeAvancesStore((state) => state.setDatosAnalitica);
+  const setExperienciaCliente = usePorcentajeAvancesStore((state) => state.setExperienciaCliente);
+  const setGobernanzaSostenibilidad = usePorcentajeAvancesStore((state) => state.setGobernanzaSostenibilidad);
+  const setPresenciaRedesSociales = usePorcentajeAvancesStore((state) => state.setPresenciaRedesSociales);
+  const setProcesosAutomatizacion = usePorcentajeAvancesStore((state) => state.setProcesosAutomatizacion);
+  const setTecnologiaInfraestructura = usePorcentajeAvancesStore((state) => state.setTecnologiaInfraestructura);
+  
+  const setCalidadCiberseguridadCompletada = useSeccionesCompletadasStore((state) => state.setCalidadCiberseguridad);
+  const setCulturaDigitalCompletada = useSeccionesCompletadasStore((state) => state.setCulturaDigital);
+  const setDatosAnaliticaCompletada = useSeccionesCompletadasStore((state) => state.setDatosAnalitica);
+  const setExperienciaClienteCompletada = useSeccionesCompletadasStore((state) => state.setExperienciaCliente);
+  const setGobernanzaSostenibilidadCompletada = useSeccionesCompletadasStore((state) => state.setGobernanzaSostenibilidad);
+  const setPresenciaRedesSocialesCompletada = useSeccionesCompletadasStore((state) => state.setPresenciaRedesSociales);
+  const setProcesosAutomatizacionCompletada = useSeccionesCompletadasStore((state) => state.setProcesosAutomatizacion);
+  const setTecnologiaInfraestructuraCompletada = useSeccionesCompletadasStore((state) => state.setTecnologiaInfraestructura);
+  
+  // Mapeo de categorías a funciones setter
+  const categoriaToSetters: Record<CategoriaCuestionario, { setPorcentaje: (value: number) => void; setCompletada: (value: boolean) => void }> = {
+    [CategoriaCuestionario.CALIDAD_CIBERSEGURIDAD]: {
+      setPorcentaje: setCalidadCiberseguridad,
+      setCompletada: setCalidadCiberseguridadCompletada,
+    },
+    [CategoriaCuestionario.CULTURA_DIGITAL]: {
+      setPorcentaje: setCulturaDigital,
+      setCompletada: setCulturaDigitalCompletada,
+    },
+    [CategoriaCuestionario.DATOS_ANALITICA]: {
+      setPorcentaje: setDatosAnalitica,
+      setCompletada: setDatosAnaliticaCompletada,
+    },
+    [CategoriaCuestionario.EXPERIENCIA_CLIENTE]: {
+      setPorcentaje: setExperienciaCliente,
+      setCompletada: setExperienciaClienteCompletada,
+    },
+    [CategoriaCuestionario.GOBERNANZA_SOSTENIBILIDAD]: {
+      setPorcentaje: setGobernanzaSostenibilidad,
+      setCompletada: setGobernanzaSostenibilidadCompletada,
+    },
+    [CategoriaCuestionario.PRESENCIA_REDES_SOCIALES]: {
+      setPorcentaje: setPresenciaRedesSociales,
+      setCompletada: setPresenciaRedesSocialesCompletada,
+    },
+    [CategoriaCuestionario.PROCESOS_AUTOMATIZACION]: {
+      setPorcentaje: setProcesosAutomatizacion,
+      setCompletada: setProcesosAutomatizacionCompletada,
+    },
+    [CategoriaCuestionario.TECNOLOGIA_INFRAESTRUCTURA]: {
+      setPorcentaje: setTecnologiaInfraestructura,
+      setCompletada: setTecnologiaInfraestructuraCompletada,
+    },
+  };
 
   // Inicializar diagnóstico al cargar el componente
   useEffect(() => {
@@ -106,6 +163,13 @@ export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances, nextRo
 
       // Guardar respuestas en la API usando empresaId
       await diagnosticosService.guardarRespuestas(empresaId, guardarRespuestasDto);
+      
+      // Actualizar los stores después de guardar
+      const setters = categoriaToSetters[categoria];
+      if (setters) {
+        setters.setPorcentaje(100);
+        setters.setCompletada(true);
+      }
       
       console.log('Respuestas guardadas exitosamente');
       setIsFinished(true);

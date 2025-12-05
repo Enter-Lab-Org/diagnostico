@@ -2,6 +2,8 @@
 
 import { ProtectedRoute } from "@/app/common/components/ProtectedRoute";
 import { diagnosticosService } from "@/app/lib/api/diagnosticos.service";
+import { usePorcentajeAvancesStore } from "@/app/store/porcentajeAvances";
+import { useSeccionesCompletadasStore } from "@/app/store/seccionesCompletadas";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -20,6 +22,8 @@ const ejesDiagnostico = [
 export default function Home() {
   const searchParams = useSearchParams();
   const [isInitializing, setIsInitializing] = useState(false);
+  const cargarPorcentajes = usePorcentajeAvancesStore((state) => state.cargarDesdeAPI);
+  const cargarSecciones = useSeccionesCompletadasStore((state) => state.cargarDesdeAPI);
 
   useEffect(() => {
     const initializeDiagnostico = async () => {
@@ -40,6 +44,12 @@ export default function Home() {
             await diagnosticosService.create({ empresaId });
           }
           
+          // Cargar los stores desde la API
+          await Promise.all([
+            cargarPorcentajes(empresaId),
+            cargarSecciones(empresaId),
+          ]);
+          
           console.log('Cuestionarios inicializados para empresa:', empresaId);
         } catch (error) {
           console.error('Error al inicializar cuestionarios:', error);
@@ -51,7 +61,7 @@ export default function Home() {
     };
 
     initializeDiagnostico();
-  }, [searchParams]);
+  }, [searchParams, cargarPorcentajes, cargarSecciones]);
 
   return (
     <ProtectedRoute>
