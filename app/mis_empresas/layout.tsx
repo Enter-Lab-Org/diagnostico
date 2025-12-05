@@ -10,3 +10,4 @@ export default function MisEmpresasLayout({
   return <ProtectedRoute>{children}</ProtectedRoute>;
 }
 
+

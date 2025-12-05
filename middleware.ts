@@ -1,31 +1,29 @@
-import type { NextRequest } from 'next/server';
-import { NextResponse } from 'next/server';
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 // Rutas protegidas que requieren autenticación
 const protectedRoutes = [
-  '/mis_empresas',
-  '/iniciar-diagnostico',
-  '/cuestionarios',
+  "/mis_empresas",
+  "/iniciar-diagnostico",
+  "/cuestionarios",
+  "/registro",
 ];
 
 // Rutas públicas que no requieren autenticación
-const publicRoutes = [
-  '/login',
-  '/registro',
-  '/',
-];
+const publicRoutes = ["/login", "/"];
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Verificar si la ruta es protegida
-  const isProtectedRoute = protectedRoutes.some(route => 
-    pathname.startsWith(route)
-  );
+  const isProtectedRoute = protectedRoutes.some((route) => {
+    debugger;
+    return pathname.startsWith(route);
+  });
 
   // Verificar si la ruta es pública
-  const isPublicRoute = publicRoutes.some(route => 
-    pathname === route || pathname.startsWith(route)
+  const isPublicRoute = publicRoutes.some(
+    (route) => pathname === route || pathname.startsWith(route)
   );
 
   // Si es una ruta protegida, verificar el token
@@ -33,7 +31,7 @@ export function middleware(request: NextRequest) {
   // Por ahora, el componente ProtectedRoute maneja la verificación del token
   // Este middleware puede ser extendido en el futuro para verificar cookies
   // si se migra el token de localStorage a cookies httpOnly
-  
+
   if (isProtectedRoute) {
     // El token se verifica en el cliente mediante ProtectedRoute
     // Si en el futuro se usa cookies, aquí se puede verificar:
@@ -56,7 +54,7 @@ export const config = {
      * - favicon.ico (favicon file)
      * - public files (public folder)
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|assets).*)',
+    "/((?!api|_next/static|_next/image|favicon.ico|assets).*)",
   ],
 };
 
