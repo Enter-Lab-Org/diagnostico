@@ -6,6 +6,7 @@ export enum APP_ROUTES {
   REGISTRO_LOGIN = "/login/registro",
   EMPRESAS_REGISTRADAS = "/registro/empresas-registradas",
   MIS_EMPRESAS = "/mis_empresas",
+  CUENTIONARIOS = "/cuestionarios",
   CUESTIONARIO_CULTURA_DIGITAL = "/cuestionarios/cultura_digital",
   CUESTIONARIO_TECNOLOGIA_INFRAESTRUCTURA = "/cuestionarios/tecnologia_infraestructura",
   CUESTIONARIO_PROCESOS_AUTOMATIZACION = "/cuestionarios/procesos_automatizacion",
