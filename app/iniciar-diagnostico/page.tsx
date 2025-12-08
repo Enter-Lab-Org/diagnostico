@@ -33,7 +33,7 @@ function IniciarDiagnosticoContent() {
       const empresaId = searchParams.get('empresaId');
 
       if (!empresaId) {
-        router.push(APP_ROUTES.EMPRESAS_REGISTRADAS);
+        router.push(APP_ROUTES.REGISTRO_EMPRESAS);
         return;
       }
 
