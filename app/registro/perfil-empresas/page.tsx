@@ -177,10 +177,12 @@ const PerfilEmpresasPage = () => {
                     required
                 >
                     <option value="">Tamaño de la empresa *</option>
-                    <option value="MICRO">Micro</option>
-                    <option value="PEQUENA">Pequeña</option>
-                    <option value="MEDIANA">Mediana</option>
-                    <option value="GRANDE">Grande</option>
+                    <option value="UNO_A_DIEZ">1 a 10 personas empleadas</option>
+                    <option value="ONCE_A_TREINTA_Y_CINCO">11 a 35 personas empleadas</option>
+                    <option value="TREINTA_Y_SEIS_A_SESENTA">36 a 60 personas empleadas</option>
+                    <option value="SESENTA_Y_UNO_A_CIEN">61 a 100 personas empleadas</option>
+                    <option value="CIENTO_UNO_A_DOSCIENTOS">101 a 200 personas empleadas</option>
+                    <option value="MAS_DE_DOSCIENTOS">+ 200 personas empleadas</option>
                 </select>
                 <input
                     type="text"

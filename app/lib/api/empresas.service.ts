@@ -1,7 +1,13 @@
 import { apiClient } from './axios.config';
 import { API_ENDPOINTS } from './config';
 
-export type TamanoEmpresa = 'MICRO' | 'PEQUENA' | 'MEDIANA' | 'GRANDE';
+export type TamanoEmpresa =
+  | 'UNO_A_DIEZ'
+  | 'ONCE_A_TREINTA_Y_CINCO'
+  | 'TREINTA_Y_SEIS_A_SESENTA'
+  | 'SESENTA_Y_UNO_A_CIEN'
+  | 'CIENTO_UNO_A_DOSCIENTOS'
+  | 'MAS_DE_DOSCIENTOS';
 
 export interface CreateEmpresaRequest {
   razonSocial: string;
