@@ -45,7 +45,7 @@ export const FormLogin = ({ onSuccess }: FormLoginProps) => {
 
   return (
     <div className="flex flex-col bg-blue-50 rounded-xl">
-      <div className="grid grid-cols-1 md:grid-cols-2">
+      <div className="grid grid-cols-1 md:grid-cols-1">
         {/* Formulario de login*/}
         <div className="flex flex-col align-center justify-center items-center p-14">
           <img className="w-32" src="/assets/logo.svg" alt="logo" />
@@ -85,20 +85,25 @@ export const FormLogin = ({ onSuccess }: FormLoginProps) => {
               {loginMutation.isPending ? "Iniciando sesión..." : "Iniciar sesión"}
             </button>
             <Link href="/recuperar-contrasena" className="text-gray-500 text-sm font-extrabold text-center underline">
-              Olvide mi contraseña
+              Olvidé mi contraseña
+            </Link>
+            <hr />
+            <span className="text-gray-500 text-sm font-extrabold text-center">Si no tienes una cuenta puedes crear una aquí</span>
+            <Link href={APP_ROUTES.REGISTRO_LOGIN} className="subTitle textPurple cursor-pointer botonDiagnosticoLine text-blue-900 p-2 w-full font-extrabold text-center bounceButton">
+              Regístrate
             </Link>
           </form>
         </div>
         {/* Seccion Registro */}
-        <div className="flex flex-col bg-gray-300 rounded-xl align-center justify-center items-center p-14 gap-9">
+        {/* <div className="flex flex-col bg-gray-300 rounded-xl align-center justify-center items-center p-14 gap-9">
           <h1 className="subTitle textPurple text-2xl font-extrabold text-center">Empieza tu diagnóstico</h1>
           <p className="textRegular">
             Aute ad irure sit esse reprehenderit commodo eiusmod officia enim laboris. Labore in amet ipsum mollit ut. Dolore dolor est magna veniam non minim enim exercitation anim anim fugiat enim culpa. In exercitation quis nisi aute laborum do. Aute cupidatat in proident incididunt consectetur Lorem elit aute velit incididunt velit.
           </p>
           <Link href={APP_ROUTES.REGISTRO_LOGIN} className="subTitle textPurple cursor-pointer botonDiagnosticoLine text-blue-900 p-2 w-full font-extrabold text-center bounceButton">
-            Registrate
+            Regístrate
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

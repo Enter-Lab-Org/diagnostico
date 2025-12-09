@@ -25,7 +25,7 @@ const LoginPage = () => {
   return (
     <>
       <h1 className="text-white text-2xl font-extrabold text-center boxTitle">
-        Inicia sesion o registrate para realizar tu diagnóstico
+        Inicia sesión o regístrate para realizar el autodiagnóstico
       </h1>
       {loginSuccess ? (
         <SuccessLogin message="Acceso correcto" route={APP_ROUTES.INICIAR_DIAGNOSTICO} />
