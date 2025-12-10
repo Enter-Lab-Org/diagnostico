@@ -54,29 +54,18 @@ export const StatusSidebar = () => {
         return StatusEnum.NOT_STARTED;
     };
 
-    const statusItems = useMemo(() => {
-        return cuestionariosConfig.map((config) => {
-            const percentage = porcentajesMap[config.key];
-            const status = getStatusFromPercentage(percentage);
-            const href = config.key;
-            return {
-                id: config.id,
-                name: config.name,
-                percentage,
-                status,
-                href
-            };
-        });
-    }, [
-        cultura_digital,
-        tecnologia_infraestructura,
-        procesos_automatizacion,
-        datos_analitica,
-        experiencia_cliente,
-        gobernanza_sostenibilidad,
-        presencia_redes_sociales,
-        calidad_ciberseguridad
-    ]);
+    const statusItems = cuestionariosConfig.map((config) => {
+        const percentage = porcentajesMap[config.key];
+        const status = getStatusFromPercentage(percentage);
+        const href = config.key;
+        return {
+            id: config.id,
+            name: config.name,
+            percentage,
+            status,
+            href
+        };
+    });
 
     const total = useMemo(() => {
         const porcentajes = [
@@ -116,41 +105,56 @@ export const StatusSidebar = () => {
     return (
         <div className="flex flex-col w-fit">
             <span className="text-sm text-[#7B549E] ml-4">Total: {total}%</span>
-            {statusItems.map((item, index) => (
-                <Link href={`/cuestionarios/${item.href}`} key={item.id} className="flex items-center relative">
-                    {/* Vertical line connecting dots */}
-                    {index < statusItems.length - 1 && (
-                        <div
-                            className={`absolute left-[7px] top-[14px] w-0.5 h-8 ${getStatusStyle(item.status)
-                                }`}
-                            style={{ zIndex: 0 }}
-                        />
-                    )}
-
-                    {/* Dot */}
-                    <div
-                        className={`relative z-10 w-4 h-4 rounded-full ${getStatusStyle(item.status)}`}
-
-                    />
-
-                    {/* Text and percentage */}
-                    <div className="ml-4 flex-1 flex items-center justify-between">
-                        <span
-                            className={`text-sm ${item.status
-                                ? 'text-[#7B549E] underline font-medium'
-                                : 'text-[#7B549E] opacity-60'
-                                }`}
-                        >
-                            {item.name}
-                        </span>
-                        {item.percentage !== undefined && (
-                            <span className="text-sm text-[#7B549E] ml-4">
-                                {Math.round(item.percentage)}%
-                            </span>
+            {statusItems.map((item, index) => {
+                const content = (
+                    <>
+                        {/* Vertical line connecting dots */}
+                        {index < statusItems.length - 1 && (
+                            <div
+                                className={`absolute left-[7px] top-[14px] w-0.5 h-8 ${getStatusStyle(item.status)
+                                    }`}
+                                style={{ zIndex: 0 }}
+                            />
                         )}
-                    </div>
-                </Link>
-            ))}
+
+                        {/* Dot */}
+                        <div
+                            className={`relative z-10 w-4 h-4 rounded-full ${getStatusStyle(item.status)}`}
+                        />
+
+                        {/* Text and percentage */}
+                        <div className="ml-4 flex-1 flex items-center justify-between">
+                            <span
+                                className={`text-sm ${item.status
+                                    ? 'text-[#7B549E] underline font-medium'
+                                    : 'text-[#7B549E] opacity-60'
+                                    }`}
+                            >
+                                {item.name}
+                            </span>
+                            {item.percentage !== undefined && (
+                                <span className="text-sm text-[#7B549E] ml-4">
+                                    {Math.round(item.percentage)}%
+                                </span>
+                            )}
+                        </div>
+                    </>
+                );
+
+                if (item.status === StatusEnum.COMPLETED) {
+                    return (
+                        <div key={item.id} className="flex items-center relative">
+                            {content}
+                        </div>
+                    );
+                }
+
+                return (
+                    <Link key={item.id} href={`/cuestionarios/${item.href}`} className="flex items-center relative">
+                        {content}
+                    </Link>
+                );
+            })}
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import { CategoriaCuestionario, CuestionarioRespuesta, diagnosticosService } from "@/app/lib/api/diagnosticos.service";
+import { CategoriaCuestionario, diagnosticosService } from "@/app/lib/api/diagnosticos.service";
 import { create } from "zustand";
 
 type Store = {
@@ -34,7 +34,7 @@ const categoriaToStoreKey: Record<CategoriaCuestionario, keyof Pick<Store, 'cali
   [CategoriaCuestionario.TECNOLOGIA_INFRAESTRUCTURA]: 'tecnologia_infraestructura',
 };
 
-export const usePorcentajeAvancesStore = create<Store>()((set, get) => ({
+export const usePorcentajeAvancesStore = create<Store>()((set) => ({
   calidad_ciberseguridad: 0,
   cultura_digital: 0,
   datos_analitica: 0,
@@ -61,8 +61,8 @@ export const usePorcentajeAvancesStore = create<Store>()((set, get) => ({
   
   cargarDesdeAPI: async (empresaId: string) => {
     try {
-      const cuestionarios = await diagnosticosService.findAll(empresaId);
-      
+      const progreso = await diagnosticosService.getProgreso(empresaId);
+
       // Inicializar todos los valores en 0
       const updates: Partial<Store> = {
         calidad_ciberseguridad: 0,
@@ -74,15 +74,18 @@ export const usePorcentajeAvancesStore = create<Store>()((set, get) => ({
         procesos_automatizacion: 0,
         tecnologia_infraestructura: 0,
       };
-      
-      // Actualizar según el estado de completado
-      cuestionarios.forEach((cuestionario: CuestionarioRespuesta) => {
+
+      // Si el cuestionario está completado, marcar 100%
+      progreso.cuestionarios.forEach((cuestionario) => {
         const storeKey = categoriaToStoreKey[cuestionario.categoria];
-        if (storeKey && cuestionario.completado) {
+
+        if (!storeKey) return;
+
+        if (cuestionario.completado) {
           updates[storeKey] = 100;
         }
       });
-      
+
       set(updates);
     } catch (error) {
       console.error('Error al cargar porcentajes desde API:', error);
