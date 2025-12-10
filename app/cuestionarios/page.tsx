@@ -3,7 +3,7 @@
 import { APP_ROUTES } from "@/app/router/app.routes";
 import { useSeccionesCompletadasStore } from "@/app/store/seccionesCompletadas";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const cuestionariosConfig = [
   { id: "1", name: "Cultura Digital Empresarial", key: "cultura_digital" as const, route: APP_ROUTES.CUESTIONARIO_CULTURA_DIGITAL },
@@ -18,24 +18,43 @@ const cuestionariosConfig = [
 
 export default function CuestionariosStatusPage() {
   const router = useRouter();
+  const [empresaId] = useState<string | null>(() => {
+    if (typeof window === "undefined") return null;
+    return localStorage.getItem("empresaId");
+  });
+  const cargarSecciones = useSeccionesCompletadasStore(
+    (state) => state.cargarDesdeAPI
+  );
 
   useEffect(() => {
-    // Obtener los valores actuales del store (ya cargados desde iniciar-diagnostico)
-    const estadoActual = useSeccionesCompletadasStore.getState();
+    const checkCuestionarios = async () => {
+      if (!empresaId) {
+        router.push(APP_ROUTES.INICIAR_DIAGNOSTICO);
+        return;
+      }
 
-    // Buscar el siguiente cuestionario incompleto
-    const siguienteIncompleto = cuestionariosConfig.find(
-      (config) => !estadoActual[config.key]
-    );
+      try {
+        await cargarSecciones(empresaId);
+        const estadoActual = useSeccionesCompletadasStore.getState();
 
-    // Redirigir al siguiente cuestionario incompleto
-    if (siguienteIncompleto) {
-      router.push(siguienteIncompleto.route);
-    } else {
-      // Si todos los cuestionarios están completos, redirigir a la página de inicio
-      router.push(APP_ROUTES.INICIAR_DIAGNOSTICO);
-    }
-  }, [router]);
+        const siguienteIncompleto = cuestionariosConfig.find(
+          (config) => !estadoActual[config.key]
+        );
+
+        if (siguienteIncompleto) {
+          router.push(siguienteIncompleto.route);
+          return;
+        }
+
+        router.push(`${APP_ROUTES.MIS_EMPRESAS}/${empresaId}/resultados`);
+      } catch (error) {
+        console.error("Error al cargar secciones completadas:", error);
+        router.push(APP_ROUTES.INICIAR_DIAGNOSTICO);
+      }
+    };
+
+    checkCuestionarios();
+  }, [cargarSecciones, empresaId, router]);
 
   return (
     <div className="flex flex-col items-center justify-center gap-4 p-6 min-h-[400px]">
