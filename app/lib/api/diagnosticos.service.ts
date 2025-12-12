@@ -2,7 +2,6 @@ import { apiClient } from './axios.config';
 import { API_ENDPOINTS } from './config';
 
 export enum CategoriaCuestionario {
-  CALIDAD_CIBERSEGURIDAD = 'CALIDAD_CIBERSEGURIDAD',
   CULTURA_DIGITAL = 'CULTURA_DIGITAL',
   DATOS_ANALITICA = 'DATOS_ANALITICA',
   EXPERIENCIA_CLIENTE = 'EXPERIENCIA_CLIENTE',

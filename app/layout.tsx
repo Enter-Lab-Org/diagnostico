@@ -1,11 +1,12 @@
+import { Disclosure, DisclosureButton, DisclosurePanel, Menu } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
+import { LogoutButton } from "./common/components/LogoutButton";
 import "./globals.css";
-import Routes from "./router/Routes";
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { QueryProvider } from "./lib/providers/QueryProvider";
+import Routes from "./router/Routes";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -61,6 +62,7 @@ export default function RootLayout({
                         {/* Current: "border-indigo-600 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
                         <div className="flex items-center gap-4 text-sm font-medium text-neutral-600 justify-between">
                           <Routes />
+                          <LogoutButton />
                         </div>
                       </div>
                     </div>
@@ -71,6 +73,9 @@ export default function RootLayout({
                   <div className="space-y-1 pt-2 pb-4">
                     {/* Contenido del menu de hamburguesa */}
                     <Routes />
+                    <div className="mt-3">
+                      <LogoutButton />
+                    </div>
                   </div>
                 </DisclosurePanel>
               </Disclosure>

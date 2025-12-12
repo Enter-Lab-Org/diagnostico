@@ -9,7 +9,6 @@ type SeccionesCompletadasStore = {
   experiencia_cliente: boolean;
   gobernanza_sostenibilidad: boolean;
   presencia_redes_sociales: boolean;
-  calidad_ciberseguridad: boolean;
   setCulturaDigital: (cultura_digital: boolean) => void;
   setTecnologiaInfraestructura: (tecnologia_infraestructura: boolean) => void;
   setProcesosAutomatizacion: (procesos_automatizacion: boolean) => void;
@@ -17,13 +16,11 @@ type SeccionesCompletadasStore = {
   setExperienciaCliente: (experiencia_cliente: boolean) => void;
   setGobernanzaSostenibilidad: (gobernanza_sostenibilidad: boolean) => void;
   setPresenciaRedesSociales: (presencia_redes_sociales: boolean) => void;
-  setCalidadCiberseguridad: (calidad_ciberseguridad: boolean) => void;
   cargarDesdeAPI: (empresaId: string) => Promise<void>;
 };
 
 // Mapeo de categorías a propiedades del store
-const categoriaToStoreKey: Record<CategoriaCuestionario, keyof Pick<SeccionesCompletadasStore, 'calidad_ciberseguridad' | 'cultura_digital' | 'datos_analitica' | 'experiencia_cliente' | 'gobernanza_sostenibilidad' | 'presencia_redes_sociales' | 'procesos_automatizacion' | 'tecnologia_infraestructura'>> = {
-  [CategoriaCuestionario.CALIDAD_CIBERSEGURIDAD]: 'calidad_ciberseguridad',
+const categoriaToStoreKey: Record<CategoriaCuestionario, keyof Pick<SeccionesCompletadasStore, 'cultura_digital' | 'datos_analitica' | 'experiencia_cliente' | 'gobernanza_sostenibilidad' | 'presencia_redes_sociales' | 'procesos_automatizacion' | 'tecnologia_infraestructura'>> = {
   [CategoriaCuestionario.CULTURA_DIGITAL]: 'cultura_digital',
   [CategoriaCuestionario.DATOS_ANALITICA]: 'datos_analitica',
   [CategoriaCuestionario.EXPERIENCIA_CLIENTE]: 'experiencia_cliente',
@@ -42,7 +39,6 @@ export const useSeccionesCompletadasStore = create<SeccionesCompletadasStore>()(
     experiencia_cliente: false,
     gobernanza_sostenibilidad: false,
     presencia_redes_sociales: false,
-    calidad_ciberseguridad: false,
     setCulturaDigital: (cultura_digital: boolean) => set({ cultura_digital }),
     setTecnologiaInfraestructura: (tecnologia_infraestructura: boolean) =>
       set({ tecnologia_infraestructura }),
@@ -55,8 +51,6 @@ export const useSeccionesCompletadasStore = create<SeccionesCompletadasStore>()(
       set({ gobernanza_sostenibilidad }),
     setPresenciaRedesSociales: (presencia_redes_sociales: boolean) =>
       set({ presencia_redes_sociales }),
-    setCalidadCiberseguridad: (calidad_ciberseguridad: boolean) =>
-      set({ calidad_ciberseguridad }),
     
     cargarDesdeAPI: async (empresaId: string) => {
       try {
@@ -64,7 +58,6 @@ export const useSeccionesCompletadasStore = create<SeccionesCompletadasStore>()(
         
         // Inicializar todos los valores en false
         const updates: Partial<SeccionesCompletadasStore> = {
-          calidad_ciberseguridad: false,
           cultura_digital: false,
           datos_analitica: false,
           experiencia_cliente: false,

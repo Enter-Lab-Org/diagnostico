@@ -19,12 +19,10 @@ const cuestionariosConfig = [
     { id: "5", name: "Experiencia del Cliente", key: "experiencia_cliente" as const },
     { id: "6", name: "Gobernanza y sostenibilidad digital", key: "gobernanza_sostenibilidad" as const },
     { id: "7", name: "Presencia en Redes Sociales", key: "presencia_redes_sociales" as const },
-    { id: "8", name: "Gestión de la Calidad y Ciberseguridad", key: "calidad_ciberseguridad" as const },
 ];
 
 export const StatusSidebar = () => {
     const {
-        calidad_ciberseguridad,
         cultura_digital,
         datos_analitica,
         experiencia_cliente,
@@ -42,7 +40,6 @@ export const StatusSidebar = () => {
         experiencia_cliente,
         gobernanza_sostenibilidad,
         presencia_redes_sociales,
-        calidad_ciberseguridad
     };
 
     const getStatusFromPercentage = (percentage: number): StatusEnum => {
@@ -69,7 +66,6 @@ export const StatusSidebar = () => {
 
     const total = useMemo(() => {
         const porcentajes = [
-            calidad_ciberseguridad,
             cultura_digital,
             datos_analitica,
             experiencia_cliente,
@@ -79,9 +75,8 @@ export const StatusSidebar = () => {
             tecnologia_infraestructura
         ];
         const completados = porcentajes.filter(p => p === 100).length;
-        return calculatePercentage(completados, 8);
+        return calculatePercentage(completados, 7);
     }, [
-        calidad_ciberseguridad,
         cultura_digital,
         datos_analitica,
         experiencia_cliente,

@@ -2,7 +2,6 @@ import { CategoriaCuestionario, diagnosticosService } from "@/app/lib/api/diagno
 import { create } from "zustand";
 
 type Store = {
-  calidad_ciberseguridad: number;
   cultura_digital: number;
   datos_analitica: number;
   experiencia_cliente: number;
@@ -18,13 +17,11 @@ type Store = {
   setExperienciaCliente: (experiencia_cliente: number) => void;
   setGobernanzaSostenibilidad: (gobernanza_sostenibilidad: number) => void;
   setPresenciaRedesSociales: (presencia_redes_sociales: number) => void;
-  setCalidadCiberseguridad: (calidad_ciberseguridad: number) => void;
   cargarDesdeAPI: (empresaId: string) => Promise<void>;
 };
 
 // Mapeo de categorías a propiedades del store
-const categoriaToStoreKey: Record<CategoriaCuestionario, keyof Pick<Store, 'calidad_ciberseguridad' | 'cultura_digital' | 'datos_analitica' | 'experiencia_cliente' | 'gobernanza_sostenibilidad' | 'presencia_redes_sociales' | 'procesos_automatizacion' | 'tecnologia_infraestructura'>> = {
-  [CategoriaCuestionario.CALIDAD_CIBERSEGURIDAD]: 'calidad_ciberseguridad',
+const categoriaToStoreKey: Record<CategoriaCuestionario, keyof Pick<Store, 'cultura_digital' | 'datos_analitica' | 'experiencia_cliente' | 'gobernanza_sostenibilidad' | 'presencia_redes_sociales' | 'procesos_automatizacion' | 'tecnologia_infraestructura'>> = {
   [CategoriaCuestionario.CULTURA_DIGITAL]: 'cultura_digital',
   [CategoriaCuestionario.DATOS_ANALITICA]: 'datos_analitica',
   [CategoriaCuestionario.EXPERIENCIA_CLIENTE]: 'experiencia_cliente',
@@ -35,7 +32,6 @@ const categoriaToStoreKey: Record<CategoriaCuestionario, keyof Pick<Store, 'cali
 };
 
 export const usePorcentajeAvancesStore = create<Store>()((set) => ({
-  calidad_ciberseguridad: 0,
   cultura_digital: 0,
   datos_analitica: 0,
   experiencia_cliente: 0,
@@ -44,8 +40,6 @@ export const usePorcentajeAvancesStore = create<Store>()((set) => ({
   procesos_automatizacion: 0,
   tecnologia_infraestructura: 0,
 
-  setCalidadCiberseguridad: (calidad_ciberseguridad: number) =>
-    set({ calidad_ciberseguridad }),
   setCulturaDigital: (cultura_digital: number) => set({ cultura_digital }),
   setDatosAnalitica: (datos_analitica: number) => set({ datos_analitica }),
   setExperienciaCliente: (experiencia_cliente: number) =>
@@ -65,7 +59,6 @@ export const usePorcentajeAvancesStore = create<Store>()((set) => ({
 
       // Inicializar todos los valores en 0
       const updates: Partial<Store> = {
-        calidad_ciberseguridad: 0,
         cultura_digital: 0,
         datos_analitica: 0,
         experiencia_cliente: 0,

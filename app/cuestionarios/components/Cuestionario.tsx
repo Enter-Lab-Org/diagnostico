@@ -36,7 +36,6 @@ export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances, nextRo
   } = useForm();
   
   // Stores para actualizar después de guardar
-  const setCalidadCiberseguridad = usePorcentajeAvancesStore((state) => state.setCalidadCiberseguridad);
   const setCulturaDigital = usePorcentajeAvancesStore((state) => state.setCulturaDigital);
   const setDatosAnalitica = usePorcentajeAvancesStore((state) => state.setDatosAnalitica);
   const setExperienciaCliente = usePorcentajeAvancesStore((state) => state.setExperienciaCliente);
@@ -45,7 +44,6 @@ export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances, nextRo
   const setProcesosAutomatizacion = usePorcentajeAvancesStore((state) => state.setProcesosAutomatizacion);
   const setTecnologiaInfraestructura = usePorcentajeAvancesStore((state) => state.setTecnologiaInfraestructura);
   
-  const setCalidadCiberseguridadCompletada = useSeccionesCompletadasStore((state) => state.setCalidadCiberseguridad);
   const setCulturaDigitalCompletada = useSeccionesCompletadasStore((state) => state.setCulturaDigital);
   const setDatosAnaliticaCompletada = useSeccionesCompletadasStore((state) => state.setDatosAnalitica);
   const setExperienciaClienteCompletada = useSeccionesCompletadasStore((state) => state.setExperienciaCliente);
@@ -56,10 +54,6 @@ export const Cuestionario = ({ preguntas, onSubmit, setPorcentajeAvances, nextRo
   
   // Mapeo de categorías a funciones setter
   const categoriaToSetters: Record<CategoriaCuestionario, { setPorcentaje: (value: number) => void; setCompletada: (value: boolean) => void }> = {
-    [CategoriaCuestionario.CALIDAD_CIBERSEGURIDAD]: {
-      setPorcentaje: setCalidadCiberseguridad,
-      setCompletada: setCalidadCiberseguridadCompletada,
-    },
     [CategoriaCuestionario.CULTURA_DIGITAL]: {
       setPorcentaje: setCulturaDigital,
       setCompletada: setCulturaDigitalCompletada,

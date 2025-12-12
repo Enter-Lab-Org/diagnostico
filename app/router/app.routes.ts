@@ -14,5 +14,4 @@ export enum APP_ROUTES {
   CUESTIONARIO_EXPERIENCIA_CLIENTE = "/cuestionarios/experiencia_cliente",
   CUESTIONARIO_GOBERNANZA_SOSTENIBILIDAD = "/cuestionarios/gobernanza_sostenibilidad",
   CUESTIONARIO_PRESENCIA_REDES = "/cuestionarios/presencia_redes_sociales",
-  CUESTIONARIO_CALIDAD_CIBERSEGURIDAD = "/cuestionarios/calidad_ciberseguridad",
 }

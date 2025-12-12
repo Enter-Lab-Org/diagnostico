@@ -13,7 +13,6 @@ const cuestionariosConfig = [
   { id: "5", name: "Experiencia del Cliente", key: "experiencia_cliente" as const, route: APP_ROUTES.CUESTIONARIO_EXPERIENCIA_CLIENTE },
   { id: "6", name: "Gobernanza y sostenibilidad digital", key: "gobernanza_sostenibilidad" as const, route: APP_ROUTES.CUESTIONARIO_GOBERNANZA_SOSTENIBILIDAD },
   { id: "7", name: "Presencia en Redes Sociales", key: "presencia_redes_sociales" as const, route: APP_ROUTES.CUESTIONARIO_PRESENCIA_REDES },
-  { id: "8", name: "Gestión de la Calidad y Ciberseguridad", key: "calidad_ciberseguridad" as const, route: APP_ROUTES.CUESTIONARIO_CALIDAD_CIBERSEGURIDAD },
 ];
 
 export default function CuestionariosStatusPage() {

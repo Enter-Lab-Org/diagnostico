@@ -9,7 +9,7 @@ const PresenciaRedesSocialesPage = () => {
   return <Cuestionario
     preguntas={preguntas}
     setPorcentajeAvances={setPresenciaRedesSociales}
-    nextRoute={APP_ROUTES.CUESTIONARIO_CALIDAD_CIBERSEGURIDAD}
+    nextRoute={APP_ROUTES.CUENTIONARIOS}
   />;
 };
 
