@@ -1,6 +1,8 @@
 'use client';
 
+import { calculatePercentage } from '@/app/helpers';
 import { User } from '@/app/lib/api/auth.service';
+import { diagnosticosService } from '@/app/lib/api/diagnosticos.service';
 import { Empresa, empresasService } from '@/app/lib/api/empresas.service';
 import { APP_ROUTES } from '@/app/router/app.routes';
 import Link from 'next/link';
@@ -9,10 +11,12 @@ import { EmpresaRecordItem } from './components/EmpresaRecordItem';
 
 const EmpresasRegistradasPage = () => {
     const [empresas, setEmpresas] = useState<Empresa[]>([]);
+    const [empresaPorcentajes, setEmpresaPorcentajes] = useState<Record<string, number>>({});
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     const fetchEmpresas = useCallback(async () => {
+        setIsLoading(true);
         if (typeof window !== 'undefined') {
             const userStr = localStorage.getItem('user');
             if (userStr) {
@@ -21,6 +25,20 @@ const EmpresasRegistradasPage = () => {
 
                     const empresasData = await empresasService.findByUserId(userData.id);
                     setEmpresas(empresasData);
+
+                    const porcentajes: Record<string, number> = {};
+                    await Promise.all(
+                        empresasData.map(async (empresa) => {
+                            try {
+                                const progreso = await diagnosticosService.getProgreso(empresa.id);
+                                const completados = progreso.cuestionarios.filter((c) => c.completado).length;
+                                porcentajes[empresa.id] = calculatePercentage(completados, 7);
+                            } catch (progressError) {
+                                console.error('Error al obtener progreso de la empresa:', progressError);
+                            }
+                        })
+                    );
+                    setEmpresaPorcentajes(porcentajes);
                 } catch (e) {
                     console.error('Error al obtener empresas:', e);
                     setError('Error al obtener las empresas. Por favor, intenta nuevamente.');
@@ -76,6 +94,7 @@ const EmpresasRegistradasPage = () => {
                         <EmpresaRecordItem
                             key={empresa.id}
                             empresa={empresa}
+                            porcentaje={empresaPorcentajes[empresa.id]}
                         />
                     ))}
                 </div>
