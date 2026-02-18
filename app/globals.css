@@ -281,3 +281,11 @@ body {
   visibility: visible;
 }
 /*Tooltip*/
+
+/*@Media*/
+@media (max-width: 320px){
+  .mainTitle{
+    font-size: 25px;
+    line-height: 1.2;
+  }
+}

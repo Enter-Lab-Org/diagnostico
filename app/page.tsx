@@ -45,22 +45,29 @@ const ejes = [
 
 export default function IniciarDiagnostico() {
   return <>
-    <div className="flex flex-col px-6 md:px-24">
+    <div className="flex flex-col px-6 md:px-24 mb-4">
       <h1 className="mainTitle">Autodiagnóstico de madurez digital de empresas</h1>
     </div>
-    <div className="flex flex-col md:flex-row md:gap-4 my-5 px-6 md:px-24">
-      <div className="flex md:w-7/12 flex-col md:gap-2 order-2 md:order-1">
+    <div className="flex md:w-100% flex-col">
+      <img className="rounded-xl" src="assets/catalogo.png" alt="Autodiagnóstico" />
+    </div>
+    <div className="grid grid-cols-12 md:gap-4 my-5 px-6 md:px-24">
+      <div className="col-span-12 md:col-span-7 md:gap-2">
         <p className="greyText text-justify textLight">
           <span className="textRegular"></span>
           Bienvenido a esta plataforma en la que a través de preguntas sencillas, divididas en 7 ejes, podrás conocer cuál es el estado de digitalización de tu empresa.<br/><br/>
-          El objetivo de este autodiagnóstico es que puedas conocer dónde estás actualmente y algunas recomendaciones estratégicas de cómo incluir tecnología en tu empresa. Si quieres conocer más sobre lo que es la transformación digital y cómo integrarla, conoce nuestra Guía básica de transformación digital para empresas aquí (link a la página de descarga de la guía).<br/><br/>
-          Cada una de los 7 ejes contiene preguntas sencillas, <strong>que no te tomarán más de 15 </strong>, que podrán orientarte para conocer más sobre el proceso de transformación digital en tu empresa.<br/><br/>
-          ¿Cómo funciona el autodiagnóstico?<br/>
-          Una vez que registres tu empresa de la que quieres conocer el estado de madurez digital, podrás acceder las preguntas y podrás seleccionar solo una respuesta por pregunta, o la que más se acerque a la realidad que vive tu organización.      
+          El objetivo de este autodiagnóstico es que puedas conocer dónde estás actualmente y algunas recomendaciones estratégicas de cómo incluir tecnología en tu empresa. Si quieres conocer más sobre lo que es la transformación digital y cómo integrarla, conoce nuestra Guía básica de transformación digital para empresas aquí (link a la página de descarga de la guía).<br/><br/>      
         </p>
       </div>
-      <div className="flex md:w-5/12 flex-col gap-2 order-1 md:order-2">
+      <div className="col-span-12 md:col-span-5 col-end-13 md:gap-2 gap-2 ">
         <img className="w-5xl" src="assets/mesa_de_trabajo_1.svg" alt="Autodiagnóstico" />
+      </div>
+      <div className="col-span-12 md:col-span-12 md:gap-2">
+        <p className="greyText text-justify textLight">
+          Cada una de los 7 ejes contiene preguntas sencillas, <strong>que no te tomarán más de 15 </strong>, que podrán orientarte para conocer más sobre el proceso de transformación digital en tu empresa.<br/><br/>
+          ¿Cómo funciona el autodiagnóstico?<br/>
+          Una vez que registres tu empresa de la que quieres conocer el estado de madurez digital, podrás acceder las preguntas y podrás seleccionar solo una respuesta por pregunta, o la que más se acerque a la realidad que vive tu organización.
+        </p>
       </div>
     </div>
     <GradientContainer>
