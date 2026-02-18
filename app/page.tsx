@@ -83,6 +83,6 @@ export default function IniciarDiagnostico() {
       <Link href={APP_ROUTES.REGISTRO_EMPRESAS} className="text-white  p-2 rounded-lg px-5 font-extrabold text-center botonDiagnostico bounceButton">
         Iniciar Autodiagnóstico
       </Link>
-    </div>`
+    </div>
   </>
 }
