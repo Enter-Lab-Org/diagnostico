@@ -18,6 +18,10 @@ export const ejemploMock: ResultadosCuestionarios[] = [
     icon: "tecnologia_icon.svg",
     description:
       "Ya cuentas con cierta infraestructura tecnológica que te abrirá el camino para la digitalización de tu empresa, ahora puedes mejorar aplicando nuevas herramientas que ayuden a tu negocio a ser más eficiente",
+    nivel: "AVANZADO",
+    nivelCorto: "AVANZADO",
+    colorHex: "#00FF00",
+    interpretacion: "Tu empresa está en un nivel avanzado de digitalización. Has logrado una buena infraestructura tecnológica y estás aplicando nuevas herramientas para mejorar la eficiencia de tu negocio.",
     objetoCalificacion: [
       {
         id: 1,
@@ -57,6 +61,10 @@ export const ejemploMock: ResultadosCuestionarios[] = [
     icon: "datos_icon.svg",
     description:
       "Ya cuentas con cierta infraestructura tecnológica que te abrirá el camino para la digitalización de tu empresa, ahora puedes mejorar aplicando nuevas herramientas que ayuden a tu negocio a ser más eficiente",
+    nivel: "AVANZADO",
+    nivelCorto: "AVANZADO",
+    colorHex: "#00FF00",
+    interpretacion: "Tu empresa está en un nivel avanzado de digitalización. Has logrado una buena infraestructura tecnológica y estás aplicando nuevas herramientas para mejorar la eficiencia de tu negocio.",
     objetoCalificacion: [
       {
         id: 1,
