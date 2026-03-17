@@ -1,27 +1,16 @@
-import { useState } from "react";
-import { Accordeon } from "./Accordeon";
 import { ResultadosCuestionarios } from "../types";
 
-
-
-export const SectionCuestionario = ({ objetoCalificacion, title, color, percentage, icon, description }: ResultadosCuestionarios) => {
-
-    const [expandedItems, setExpandedItems] = useState<number[]>([]);
-
-    const toggleAccordion = (id: number) => {
-        setExpandedItems((prev) =>
-            prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-        );
-    };
+export const SectionCuestionario = ({ objetoCalificacion, title, color, percentage, icon, description, nivelCorto, colorHex }: ResultadosCuestionarios) => {
 
     const getColorClass = (color: string) => {
-        const colorClass = {
+        const colorClass: Record<string, string> = {
             "yellow": "bg-yellow-400",
             "green": "bg-green-500",
             "orange": "bg-orange-500",
-        } as const;
+            "purple": "bg-purple-400",
+        };
 
-        return colorClass[color as keyof typeof colorClass] || "bg-yellow-400";
+        return colorClass[color] || "bg-yellow-400";
     };
 
     return (
@@ -41,6 +30,14 @@ export const SectionCuestionario = ({ objetoCalificacion, title, color, percenta
                     <div className="flex items-center gap-3 mb-4">
                         <div className={`w-4 h-4 rounded-full ${getColorClass(color)}`}></div>
                         <span className="text-4xl font-bold text-secondary-purple">{percentage}%</span>
+                        {nivelCorto && (
+                            <span
+                                className="px-3 py-1 rounded-full text-sm font-semibold text-white"
+                                style={{ backgroundColor: colorHex }}
+                            >
+                                {nivelCorto}
+                            </span>
+                        )}
                     </div>
                     <h1 className="mainTitle mb-4">{title}</h1>
                     <p className="textLight textGray text-base max-w-3xl">
@@ -49,18 +46,15 @@ export const SectionCuestionario = ({ objetoCalificacion, title, color, percenta
                 </div>
             </div>
 
-            {/* Accordion Items */}
-            <div className="flex flex-col gap-4">
+            {/* Recommendations List */}
+            <ul className="flex flex-col gap-2">
                 {objetoCalificacion.map((item) => (
-                    <Accordeon key={item.id}
-                        item={item}
-                        toggleAccordion={toggleAccordion}
-                        getColorClass={getColorClass}
-                        expandedItems={expandedItems}
-                    />
-
+                    <li key={item.id} className="flex items-start gap-3">
+                        <div className={`mt-1.5 w-3 h-3 shrink-0 rounded-full ${getColorClass(item.color)}`} />
+                        <span className="textRegular text-secondary-purple">{item.title}</span>
+                    </li>
                 ))}
-            </div>
+            </ul>
         </div>
     );
 }
