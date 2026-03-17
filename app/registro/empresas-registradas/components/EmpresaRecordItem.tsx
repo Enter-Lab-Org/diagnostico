@@ -18,7 +18,7 @@ export const EmpresaRecordItem: FC<EmpresaRecordItemProps> = ({ empresa, porcent
         {/* Nombre de la empresa */}
         <div className="flex-1 min-w-0 text-center md:text-left">
             <p className="textPurplePrimary textRegular text-lg">
-                --{empresa.razonSocial}--
+                {empresa.razonSocial}
             </p>
             <p className="text-sm text-[#7B549E] mt-1">
                 Total: {porcentaje}%
